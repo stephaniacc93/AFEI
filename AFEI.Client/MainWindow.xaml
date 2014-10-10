@@ -1,0 +1,38 @@
+﻿<controls:MetroWindow x:Class="AFEI.Client.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="AFEI"
+                      Width="1000"
+                      Height="700"
+                      EnableDWMDropShadow="True"
+                      Icon="Images/AFEIIcon.ico"
+                      ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".15*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Background="#f2f2f2" />
+        <Button x:Name="BackButton" HorizontalAlignment="Left" Style="{StaticResource BStyle}">
+            <Image Width="50"
+                   Height="50"
+                   Margin="20,0,0,0"
+                   Source="Images/Back.png" />
+        </Button>
+        <TextBlock Grid.Row="0"
+                   VerticalAlignment="Center"
+                   FontFamily="#Andarilho Font normal.ttf"
+                   FontSize="80"
+                   Foreground="Black"
+                   Text="AFEI"
+                   TextAlignment="Center" />
+        <ScrollViewer x:Name="Content"
+                      Grid.Row="1"
+                      Background="White"
+                      VerticalScrollBarVisibility="Hidden" />
+    </Grid>
+</controls:MetroWindow>
