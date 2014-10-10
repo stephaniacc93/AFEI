@@ -19,6 +19,7 @@ namespace AFEI.Models
             this.Clients = new HashSet<Client>();
             this.Prices = new HashSet<Price>();
             this.Providers = new HashSet<Provider>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,6 @@ namespace AFEI.Models
         public virtual ICollection<Client> Clients { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<Provider> Providers { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

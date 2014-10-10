@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using AFEI.Data;
+using AFEI.Models;
 using Odasoft.DataProvider.Repositories;
 
 namespace EZPark.Data
@@ -7,17 +9,15 @@ namespace EZPark.Data
     [NotMapped]
     public class UnitOfWork : IDisposable
     {
-        //public EZParkDbContext Context { get; set; }
+        public AFEIEntities Context { get; set; }
 
         #region<--Repositories-->
-        //public GenericRepository<Ad> AdRepository { get; set; }
-        //public GenericRepository<Payment> BillRepository { get; set; }
-        //public GenericRepository<Mall> MallRepository { get; set; }
-        //public GenericRepository<MallAd> MallAdRepository { get; set; }
-        //public GenericRepository<Store> StoreRepository { get; set; }
-        //public GenericRepository<StoreAd> StoreAdRepository { get; set; }
-        //public GenericRepository<Ticket> TicketRepository { get; set; }
-        //public GenericRepository<User> UserRepository { get; set; }
+
+        public GenericRepository<Client> ClientRepository { get; set; }
+        public GenericRepository<Price> PriceRepository { get; set; }
+        public GenericRepository<Product> ProductRepository { get; set; }
+        public GenericRepository<Provider> ProviderRepository { get; set; }
+        public GenericRepository<Transaction> TransactionRepository { get; set; }
 
         #endregion
 
@@ -26,27 +26,24 @@ namespace EZPark.Data
 
         public UnitOfWork()
         {
-            //Context = new EZParkDbContext();
-            //Version = Guid.NewGuid();
-            //InitializeRepositories(Context);
+            Context = new AFEIEntities();
+            Version = Guid.NewGuid();
+            InitializeRepositories(Context);
         }
 
-        //private void InitializeRepositories(EZParkDbContext context)
-        //{
-        //    AdRepository = new GenericRepository<Ad>(context);
-        //    BillRepository = new GenericRepository<Payment>(context);
-        //    MallRepository = new GenericRepository<Mall>(context);
-        //    MallAdRepository = new GenericRepository<MallAd>(context);
-        //    StoreRepository = new GenericRepository<Store>(context);
-        //    StoreAdRepository = new GenericRepository<StoreAd>(context);
-        //    TicketRepository = new GenericRepository<Ticket>(context);
-        //    UserRepository = new GenericRepository<User>(context);
-        //}
+        private void InitializeRepositories(AFEIEntities context)
+        {
+            ClientRepository = new GenericRepository<Client>(context);
+            PriceRepository = new GenericRepository<Price>(context);
+            ProductRepository = new GenericRepository<Product>(context);
+            ProviderRepository = new GenericRepository<Provider>(context);
+            TransactionRepository = new GenericRepository<Transaction>(context);
+        }
 
-        //public void CommitChanges()
-        //{
-        //    Context.SaveChanges();
-        //}
+        public void CommitChanges()
+        {
+            Context.SaveChanges();
+        }
 
         public void Dispose()
         {

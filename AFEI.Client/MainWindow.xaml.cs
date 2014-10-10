@@ -29,7 +29,6 @@ namespace AFEI.Client
             InitializeComponent();
             Content.Content = menu;
             BackButton.Visibility = Visibility.Hidden;
-
         }
 
     }

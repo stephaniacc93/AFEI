@@ -64,6 +64,9 @@
     <Compile Include="Provider.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Transaction.cs">
+      <DependentUpon>AFEIModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AFEIModel.tt">

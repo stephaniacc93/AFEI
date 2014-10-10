@@ -31,5 +31,6 @@ namespace AFEI.Data
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }

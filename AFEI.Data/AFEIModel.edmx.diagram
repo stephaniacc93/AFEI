@@ -12,6 +12,8 @@
         <AssociationConnector Association="AFEIModel.ProductClient" ManuallyRouted="false" />
         <AssociationConnector Association="AFEIModel.ProductPrice" ManuallyRouted="false" />
         <AssociationConnector Association="AFEIModel.ProductProvider" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AFEIModel.Transaction" Width="1.5" PointX="5.25" PointY="4.25" />
+        <AssociationConnector Association="AFEIModel.TransactionProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
