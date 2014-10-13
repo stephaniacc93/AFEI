@@ -8,10 +8,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using AFEI.Data;
-using EZPark.Data;
 
-namespace Odasoft.DataProvider.Repositories
+
+namespace AFEI.Data.Repositories
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {

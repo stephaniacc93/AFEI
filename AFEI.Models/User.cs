@@ -12,19 +12,22 @@ namespace AFEI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Transaction
+    public partial class User
     {
-        public Transaction()
+        public User()
         {
-            this.Products = new HashSet<Product>();
+            this.ChangesLogs = new HashSet<ChangesLog>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public int Id { get; set; }
-        public float Total { get; set; }
-        public int Type { get; set; }
-        public System.DateTime Date { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Phone { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ChangesLog> ChangesLogs { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

@@ -27,10 +27,12 @@ namespace AFEI.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ChangesLog> ChangesLogs { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

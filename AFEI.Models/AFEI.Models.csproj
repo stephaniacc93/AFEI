@@ -51,6 +51,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChangesLog.cs">
+      <DependentUpon>AFEIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
@@ -65,6 +68,9 @@
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs">
+      <DependentUpon>AFEIModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

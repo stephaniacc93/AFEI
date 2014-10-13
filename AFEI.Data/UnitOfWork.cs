@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using AFEI.Data;
+using AFEI.Data.Repositories;
 using AFEI.Models;
-using Odasoft.DataProvider.Repositories;
 
-namespace EZPark.Data
+namespace AFEI.Data
 {
     [NotMapped]
     public class UnitOfWork : IDisposable
@@ -18,6 +17,8 @@ namespace EZPark.Data
         public GenericRepository<Product> ProductRepository { get; set; }
         public GenericRepository<Provider> ProviderRepository { get; set; }
         public GenericRepository<Transaction> TransactionRepository { get; set; }
+        public GenericRepository<ChangesLog> ChangesLogRepository { get; set; }
+        public GenericRepository<User> UserRepository { get; set; }
 
         #endregion
 
@@ -38,6 +39,8 @@ namespace EZPark.Data
             ProductRepository = new GenericRepository<Product>(context);
             ProviderRepository = new GenericRepository<Provider>(context);
             TransactionRepository = new GenericRepository<Transaction>(context);
+            ChangesLogRepository = new GenericRepository<ChangesLog>(context);
+            UserRepository = new GenericRepository<User>(context);
         }
 
         public void CommitChanges()

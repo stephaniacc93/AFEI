@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Odasoft.DataProvider.Repositories
+namespace AFEI.Data.Repositories
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
