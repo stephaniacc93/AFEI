@@ -5,14 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9f9f01ac88294968b5b85986645774b1" Name="Diagram1">
-        <EntityTypeShape EntityType="AFEIModel.ChangesLog" Width="1.5" PointX="5.25" PointY="9.625" />
-        <EntityTypeShape EntityType="AFEIModel.Client" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="AFEIModel.Price" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AFEIModel.Product" Width="1.5" PointX="3" PointY="3.375" />
-        <EntityTypeShape EntityType="AFEIModel.Provider" Width="1.5" PointX="5.25" PointY="6.375" />
-        <EntityTypeShape EntityType="AFEIModel.Transaction" Width="1.5" PointX="5.25" PointY="2.5" />
-        <EntityTypeShape EntityType="AFEIModel.User" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="AFEIModel.ChangesLog" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="AFEIModel.Client" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="AFEIModel.History" Width="1.5" PointX="7.5" PointY="8" />
+        <EntityTypeShape EntityType="AFEIModel.Price" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="AFEIModel.Product" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="AFEIModel.Provider" Width="1.5" PointX="5.25" PointY="11.5" />
+        <EntityTypeShape EntityType="AFEIModel.Transaction" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="AFEIModel.User" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="AFEIModel.FK_ChangesLog_User" />
+        <AssociationConnector Association="AFEIModel.FK_History_Product" />
+        <AssociationConnector Association="AFEIModel.FK_History_Provider" />
+        <AssociationConnector Association="AFEIModel.FK_History_Transaction" />
+        <AssociationConnector Association="AFEIModel.FK_History_User" />
         <AssociationConnector Association="AFEIModel.FK_Transaction_User" />
         <AssociationConnector Association="AFEIModel.ProductClient" />
         <AssociationConnector Association="AFEIModel.ProductPrice" />

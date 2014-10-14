@@ -19,6 +19,7 @@ namespace AFEI.Data
         public GenericRepository<Transaction> TransactionRepository { get; set; }
         public GenericRepository<ChangesLog> ChangesLogRepository { get; set; }
         public GenericRepository<User> UserRepository { get; set; }
+        public GenericRepository<History> HistoryRepository { get; set; }
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace AFEI.Data
             TransactionRepository = new GenericRepository<Transaction>(context);
             ChangesLogRepository = new GenericRepository<ChangesLog>(context);
             UserRepository = new GenericRepository<User>(context);
+            HistoryRepository = new GenericRepository<History>(context);
         }
 
         public void CommitChanges()

@@ -17,6 +17,7 @@ namespace AFEI.Models
         public User()
         {
             this.ChangesLogs = new HashSet<ChangesLog>();
+            this.Histories = new HashSet<History>();
             this.Transactions = new HashSet<Transaction>();
         }
     
@@ -28,6 +29,7 @@ namespace AFEI.Models
         public string Password { get; set; }
     
         public virtual ICollection<ChangesLog> ChangesLogs { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

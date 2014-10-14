@@ -29,6 +29,7 @@ namespace AFEI.Data
     
         public virtual DbSet<ChangesLog> ChangesLogs { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }

@@ -57,6 +57,9 @@
     <Compile Include="Client.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="History.cs">
+      <DependentUpon>AFEIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Price.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>

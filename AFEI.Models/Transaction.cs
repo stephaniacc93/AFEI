@@ -16,6 +16,7 @@ namespace AFEI.Models
     {
         public Transaction()
         {
+            this.Histories = new HashSet<History>();
             this.Products = new HashSet<Product>();
         }
     
@@ -24,6 +25,7 @@ namespace AFEI.Models
         public int Type { get; set; }
         public System.DateTime Date { get; set; }
     
+        public virtual ICollection<History> Histories { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }

@@ -24,6 +24,20 @@
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTransaction" Type="int" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="TransactionAmount" Type="real" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="IdProvider" Type="int" Nullable="false" />
+          <Property Name="Balance" Type="real" Nullable="false" />
+          <Property Name="Justification" Type="varchar(max)" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Price">
           <Key>
             <PropertyRef Name="Id" />
@@ -113,6 +127,54 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ChangesLog">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Provider">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdTransaction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
               <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
@@ -228,6 +290,7 @@
         <EntityContainer Name="AFEIModelStoreContainer">
           <EntitySet Name="ChangesLog" EntityType="Self.ChangesLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductClient" EntityType="Self.ProductClient" Schema="dbo" store:Type="Tables" />
@@ -240,6 +303,22 @@
           <AssociationSet Name="FK_ChangesLog_User" Association="Self.FK_ChangesLog_User">
             <End Role="User" EntitySet="User" />
             <End Role="ChangesLog" EntitySet="ChangesLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Product" Association="Self.FK_History_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Provider" Association="Self.FK_History_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Transaction" Association="Self.FK_History_Transaction">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_User" Association="Self.FK_History_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductClient_Client" Association="Self.FK_ProductClient_Client">
             <End Role="Client" EntitySet="Client" />
@@ -285,6 +364,7 @@
         <EntityContainer Name="AFEIEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChangesLogs" EntityType="AFEIModel.ChangesLog" />
           <EntitySet Name="Clients" EntityType="AFEIModel.Client" />
+          <EntitySet Name="Histories" EntityType="AFEIModel.History" />
           <EntitySet Name="Prices" EntityType="AFEIModel.Price" />
           <EntitySet Name="Products" EntityType="AFEIModel.Product" />
           <EntitySet Name="Providers" EntityType="AFEIModel.Provider" />
@@ -293,6 +373,22 @@
           <AssociationSet Name="FK_ChangesLog_User" Association="AFEIModel.FK_ChangesLog_User">
             <End Role="User" EntitySet="Users" />
             <End Role="ChangesLog" EntitySet="ChangesLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Product" Association="AFEIModel.FK_History_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Provider" Association="AFEIModel.FK_History_Provider">
+            <End Role="Provider" EntitySet="Providers" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Transaction" Association="AFEIModel.FK_History_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_User" Association="AFEIModel.FK_History_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="History" EntitySet="Histories" />
           </AssociationSet>
           <AssociationSet Name="FK_Transaction_User" Association="AFEIModel.FK_Transaction_User">
             <End Role="User" EntitySet="Users" />
@@ -335,6 +431,20 @@
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="AFEIModel.ProductClient" FromRole="Client" ToRole="Product" />
         </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionAmount" Type="Single" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Balance" Type="Single" Nullable="false" />
+          <Property Name="Justification" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="AFEIModel.FK_History_Product" FromRole="History" ToRole="Product" />
+          <NavigationProperty Name="Provider" Relationship="AFEIModel.FK_History_Provider" FromRole="History" ToRole="Provider" />
+          <NavigationProperty Name="Transaction" Relationship="AFEIModel.FK_History_Transaction" FromRole="History" ToRole="Transaction" />
+          <NavigationProperty Name="User" Relationship="AFEIModel.FK_History_User" FromRole="History" ToRole="User" />
+        </EntityType>
         <EntityType Name="Price">
           <Key>
             <PropertyRef Name="Id" />
@@ -352,6 +462,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Histories" Relationship="AFEIModel.FK_History_Product" FromRole="Product" ToRole="History" />
           <NavigationProperty Name="Clients" Relationship="AFEIModel.ProductClient" FromRole="Product" ToRole="Client" />
           <NavigationProperty Name="Prices" Relationship="AFEIModel.ProductPrice" FromRole="Product" ToRole="Price" />
           <NavigationProperty Name="Providers" Relationship="AFEIModel.ProductProvider" FromRole="Product" ToRole="Provider" />
@@ -367,6 +478,7 @@
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Histories" Relationship="AFEIModel.FK_History_Provider" FromRole="Provider" ToRole="History" />
           <NavigationProperty Name="Products" Relationship="AFEIModel.ProductProvider" FromRole="Provider" ToRole="Product" />
         </EntityType>
         <EntityType Name="Transaction">
@@ -377,6 +489,7 @@
           <Property Name="Total" Type="Single" Nullable="false" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Histories" Relationship="AFEIModel.FK_History_Transaction" FromRole="Transaction" ToRole="History" />
           <NavigationProperty Name="User" Relationship="AFEIModel.FK_Transaction_User" FromRole="Transaction" ToRole="User" />
           <NavigationProperty Name="Products" Relationship="AFEIModel.TransactionProduct" FromRole="Transaction" ToRole="Product" />
         </EntityType>
@@ -391,11 +504,28 @@
           <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChangesLogs" Relationship="AFEIModel.FK_ChangesLog_User" FromRole="User" ToRole="ChangesLog" />
+          <NavigationProperty Name="Histories" Relationship="AFEIModel.FK_History_User" FromRole="User" ToRole="History" />
           <NavigationProperty Name="Transactions" Relationship="AFEIModel.FK_Transaction_User" FromRole="User" ToRole="Transaction" />
         </EntityType>
         <Association Name="FK_ChangesLog_User">
           <End Type="AFEIModel.User" Role="User" Multiplicity="1" />
           <End Type="AFEIModel.ChangesLog" Role="ChangesLog" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_History_Product">
+          <End Type="AFEIModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="AFEIModel.History" Role="History" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_History_Provider">
+          <End Type="AFEIModel.Provider" Role="Provider" Multiplicity="1" />
+          <End Type="AFEIModel.History" Role="History" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_History_Transaction">
+          <End Type="AFEIModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="AFEIModel.History" Role="History" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_History_User">
+          <End Type="AFEIModel.User" Role="User" Multiplicity="1" />
+          <End Type="AFEIModel.History" Role="History" Multiplicity="*" />
         </Association>
         <Association Name="FK_Transaction_User">
           <End Type="AFEIModel.User" Role="User" Multiplicity="1" />
@@ -417,7 +547,7 @@
           <End Type="AFEIModel.Product" Role="Product" Multiplicity="*" />
           <End Type="AFEIModel.Transaction" Role="Transaction" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -439,6 +569,17 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="AFEIModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Justification" ColumnName="Justification" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -498,6 +639,38 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="FK_ChangesLog_User" TypeName="AFEIModel.FK_ChangesLog_User" StoreEntitySet="ChangesLog">
             <EndProperty Name="ChangesLog">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="IdUser" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_History_Product" TypeName="AFEIModel.FK_History_Product" StoreEntitySet="History">
+            <EndProperty Name="History">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="IdProduct" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_History_Provider" TypeName="AFEIModel.FK_History_Provider" StoreEntitySet="History">
+            <EndProperty Name="History">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Provider">
+              <ScalarProperty Name="Id" ColumnName="IdProvider" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_History_Transaction" TypeName="AFEIModel.FK_History_Transaction" StoreEntitySet="History">
+            <EndProperty Name="History">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Transaction">
+              <ScalarProperty Name="Id" ColumnName="IdTransaction" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_History_User" TypeName="AFEIModel.FK_History_User" StoreEntitySet="History">
+            <EndProperty Name="History">
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
             <EndProperty Name="User">
