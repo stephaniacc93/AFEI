@@ -6,10 +6,8 @@
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                               Width="Auto"
-                               Height="Auto"
-                               d:DesignHeight="514"
-                               d:DesignWidth="944"
+                               Width="950"
+                               Height="525"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -38,7 +36,9 @@
                     Margin="0,25,10,0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-            <Grid Height="30" Width="180" Background="#FF212121">
+            <Grid Width="180"
+                  Height="30"
+                  Background="#FF212121">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -77,37 +77,36 @@
                   CanUserReorderColumns="False"
                   CanUserResizeColumns="False"
                   CanUserResizeRows="False"
-                  
                   Style="{StaticResource AzureDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Date}"
+                <DataGridTextColumn Width=".8*"
+                                    Binding="{Binding Date}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Width=".8*"
                                     Header="Fecha" />
-                <DataGridTextColumn Binding="{Binding Transaction.Type}"
+                <DataGridTextColumn Width="1.090*"
+                                    Binding="{Binding Transaction.Type}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Width="1.090*"
                                     Header="Tipo de Transaccion" />
-                <DataGridTextColumn Binding="{Binding Product.Name}"
+                <DataGridTextColumn Width=".7*"
+                                    Binding="{Binding Product.Name}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Header="Producto" 
-                                    Width=".7*"/>
-                <DataGridTextColumn Binding="{Binding Balance}"
+                                    Header="Producto" />
+                <DataGridTextColumn Width=".7*"
+                                    Binding="{Binding Balance}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Header="Balance" 
-                                    Width=".7*"/>
-                <DataGridTextColumn Binding="{Binding Justificaction}"
-                                    Width="2*"
+                                    Header="Balance" />
+                <DataGridTextColumn Width="2*"
+                                    Binding="{Binding Justificaction}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Justificacion" />
-                <DataGridTextColumn Binding="{Binding User.Firstname}"
+                <DataGridTextColumn Width="1.3*"
+                                    Binding="{Binding User.Firstname}"
                                     CanUserSort="False"
-                                    Width="1.3*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Responsable del Cambio" />
             </DataGrid.Columns>

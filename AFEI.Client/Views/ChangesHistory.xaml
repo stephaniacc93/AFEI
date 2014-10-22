@@ -6,10 +6,8 @@
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                               Width="Auto"
-                               Height="Auto"
-                               d:DesignHeight="514"
-                               d:DesignWidth="944"
+                               Width="950"
+                               Height="525"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -38,7 +36,9 @@
                     Margin="0,25,10,0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-            <Grid Height="30" Width="180" Background="#FF212121">
+            <Grid Width="180"
+                  Height="30"
+                  Background="#FF212121">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
