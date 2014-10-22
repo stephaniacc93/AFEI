@@ -1,0 +1,116 @@
+﻿<controls1:MetroContentControl x:Class="AFEI.Client.Views.ProductHistory"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                               xmlns:controls1="http://metro.mahapps.com/winfx/xaml/controls"
+                               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                               xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                               Width="Auto"
+                               Height="Auto"
+                               d:DesignHeight="514"
+                               d:DesignWidth="944"
+                               mc:Ignorable="d">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Margin="15,15,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontFamily="Segoe UI Light"
+                   FontSize="20"
+                   Text="Historial de Productos" />
+        <StackPanel Grid.Row="0"
+                    Grid.Column="3"
+                    Margin="0,25,10,0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Grid Height="30" Width="180" Background="#FF212121">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Width="30"
+                       Margin="5"
+                       Source="../Images/SearchIcon.png" />
+                <xctk:WatermarkTextBox x:Name="SearchTextBox"
+                                       Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Background="Transparent"
+                                       BorderThickness="0"
+                                       FontSize="15"
+                                       Foreground="White"
+                                       Padding="5">
+                    <xctk:WatermarkTextBox.Watermark>
+                        <TextBlock FontSize="15"
+                                   Foreground="WhiteSmoke"
+                                   Text="Search..." />
+                    </xctk:WatermarkTextBox.Watermark>
+                </xctk:WatermarkTextBox>
+            </Grid>
+        </StackPanel>
+        <DataGrid x:Name="ProductHistoryDataGrid"
+                  Grid.Row="1"
+                  Grid.RowSpan="4"
+                  Grid.ColumnSpan="4"
+                  Height="350"
+                  Margin="10,20,10,0"
+                  VerticalAlignment="Top"
+                  HorizontalContentAlignment="Center"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  
+                  Style="{StaticResource AzureDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Date}"
+                                    CanUserSort="False"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Width=".8*"
+                                    Header="Fecha" />
+                <DataGridTextColumn Binding="{Binding Transaction.Type}"
+                                    CanUserSort="False"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Width="1.090*"
+                                    Header="Tipo de Transaccion" />
+                <DataGridTextColumn Binding="{Binding Product.Name}"
+                                    CanUserSort="False"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Header="Producto" 
+                                    Width=".7*"/>
+                <DataGridTextColumn Binding="{Binding Balance}"
+                                    CanUserSort="False"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Header="Balance" 
+                                    Width=".7*"/>
+                <DataGridTextColumn Binding="{Binding Justificaction}"
+                                    Width="2*"
+                                    CanUserSort="False"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Header="Justificacion" />
+                <DataGridTextColumn Binding="{Binding User.Firstname}"
+                                    CanUserSort="False"
+                                    Width="1.3*"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Header="Responsable del Cambio" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</controls1:MetroContentControl>

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -17,14 +16,13 @@ using MahApps.Metro.Controls;
 namespace AFEI.Client.Views
 {
     /// <summary>
-    /// Interaction logic for Menu.xaml
+    /// Interaction logic for ProductHistory.xaml
     /// </summary>
-    public partial class Menu : MetroContentControl
+    public partial class ProductHistory : MetroContentControl
     {
-        public Menu()
+        public ProductHistory()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -23,13 +23,58 @@ namespace AFEI.Client
     public partial class MainWindow : MetroWindow
     {
         Views.Menu menu = new Views.Menu();
+        Provider provider = new Provider();
+        Views.Client client = new Views.Client();
+        Inventory inventory = new Inventory();
+        ChangesHistory changesHistory = new ChangesHistory();
+        ProductHistory productHistory = new ProductHistory();
+        Login login = new Login();
 
         public MainWindow()
         {
             InitializeComponent();
             Content.Content = menu;
-            BackButton.Visibility = Visibility.Hidden;
         }
 
+        private void HomeButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = menu;
+        }
+
+        private void ProviderButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = provider;
+        }
+
+        private void ClientButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = client;
+        }
+
+        private void InventoryButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = inventory;
+        }
+
+        private void HistoryButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            HistoryButton.ContextMenu.IsOpen = true;
+        }
+
+
+        private void ProductHistory_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = productHistory;
+        }
+
+        private void ChangesHistory_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = changesHistory;
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Content.Content = login;
+        }
     }
 }
