@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using AFEI.Models;
-
 namespace AFEI.Data
 {
     using System;

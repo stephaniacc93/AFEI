@@ -24,5 +24,20 @@ namespace AFEI.Client.Views
         {
             InitializeComponent();
         }
+
+        private void AddClientButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            OnAddClientClicked();
+        }
+
+        public delegate void AddClientClickedHandler();
+        public event AddClientClickedHandler AddClientClicked;
+        public void OnAddClientClicked()
+        {
+            if (AddClientClicked != null)
+            {
+                AddClientClicked();
+            }
+        }
     }
 }

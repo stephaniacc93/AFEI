@@ -28,12 +28,19 @@ namespace AFEI.Client
         Inventory inventory = new Inventory();
         ChangesHistory changesHistory = new ChangesHistory();
         ProductHistory productHistory = new ProductHistory();
+        AddClient addClient = new AddClient();
         Login login = new Login();
 
         public MainWindow()
         {
             InitializeComponent();
             Content.Content = menu;
+            client.AddClientClicked += client_AddClientClicked;
+        }
+
+        void client_AddClientClicked()
+        {
+            Content.Content = addClient;
         }
 
         private void HomeButton_OnClick(object sender, RoutedEventArgs e)
@@ -75,6 +82,16 @@ namespace AFEI.Client
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Content.Content = login;
+        }
+
+        private void LogoutButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UserButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            UserButton.ContextMenu.IsOpen = true;
         }
     }
 }

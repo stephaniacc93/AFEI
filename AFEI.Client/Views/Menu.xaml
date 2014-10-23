@@ -5,8 +5,10 @@
                                xmlns:controls1="http://metro.mahapps.com/winfx/xaml/controls"
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                               Width="950"
-                               Height="700"
+                               d:DesignWidth="950"
+                               d:DesignHeight="700"
+                               Width="Auto"
+                               Height="Auto"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -111,6 +113,11 @@
                                     Width="*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Producto" />
+                <DataGridTextColumn Binding="{Binding Provider}"
+                                    CanUserSort="False"
+                                    Width=".7*"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Header="Proveedor" />
                 <DataGridTextColumn Binding="{Binding Balance}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"

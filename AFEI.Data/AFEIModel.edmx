@@ -54,6 +54,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="IdProvider" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductClient">
           <Key>
@@ -70,14 +71,6 @@
           </Key>
           <Property Name="IdProduct" Type="int" Nullable="false" />
           <Property Name="IdPrice" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ProductProvider">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="ProviderId" />
-          </Key>
-          <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="ProviderId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -179,6 +172,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Provider">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductClient_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="ProductClient" Type="Self.ProductClient" Multiplicity="*" />
@@ -227,30 +232,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductProvider_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductProvider" Type="Self.ProductProvider" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductProvider">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductProvider_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="ProductProvider" Type="Self.ProductProvider" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductProvider">
-              <PropertyRef Name="ProviderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Transaction_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
@@ -295,7 +276,6 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductClient" EntityType="Self.ProductClient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductProvider" EntityType="Self.ProductProvider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionProduct" EntityType="Self.TransactionProduct" Schema="dbo" store:Type="Tables" />
@@ -320,6 +300,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Provider" Association="Self.FK_Product_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductClient_Client" Association="Self.FK_ProductClient_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="ProductClient" EntitySet="ProductClient" />
@@ -335,14 +319,6 @@
           <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductPrice" EntitySet="ProductPrice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductProvider_Product" Association="Self.FK_ProductProvider_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductProvider" EntitySet="ProductProvider" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductProvider_Provider" Association="Self.FK_ProductProvider_Provider">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="ProductProvider" EntitySet="ProductProvider" />
           </AssociationSet>
           <AssociationSet Name="FK_Transaction_User" Association="Self.FK_Transaction_User">
             <End Role="User" EntitySet="User" />
@@ -390,6 +366,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="History" EntitySet="Histories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Provider" Association="AFEIModel.FK_Product_Provider">
+            <End Role="Provider" EntitySet="Providers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_Transaction_User" Association="AFEIModel.FK_Transaction_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Transaction" EntitySet="Transactions" />
@@ -401,10 +381,6 @@
           <AssociationSet Name="ProductPrice" Association="AFEIModel.ProductPrice">
             <End Role="Price" EntitySet="Prices" />
             <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="ProductProvider" Association="AFEIModel.ProductProvider">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Provider" EntitySet="Providers" />
           </AssociationSet>
           <AssociationSet Name="TransactionProduct" Association="AFEIModel.TransactionProduct">
             <End Role="Product" EntitySet="Products" />
@@ -463,9 +439,9 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Histories" Relationship="AFEIModel.FK_History_Product" FromRole="Product" ToRole="History" />
+          <NavigationProperty Name="Provider" Relationship="AFEIModel.FK_Product_Provider" FromRole="Product" ToRole="Provider" />
           <NavigationProperty Name="Clients" Relationship="AFEIModel.ProductClient" FromRole="Product" ToRole="Client" />
           <NavigationProperty Name="Prices" Relationship="AFEIModel.ProductPrice" FromRole="Product" ToRole="Price" />
-          <NavigationProperty Name="Providers" Relationship="AFEIModel.ProductProvider" FromRole="Product" ToRole="Provider" />
           <NavigationProperty Name="Transactions" Relationship="AFEIModel.TransactionProduct" FromRole="Product" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="Provider">
@@ -479,7 +455,7 @@
           <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Histories" Relationship="AFEIModel.FK_History_Provider" FromRole="Provider" ToRole="History" />
-          <NavigationProperty Name="Products" Relationship="AFEIModel.ProductProvider" FromRole="Provider" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="AFEIModel.FK_Product_Provider" FromRole="Provider" ToRole="Product" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -527,6 +503,10 @@
           <End Type="AFEIModel.User" Role="User" Multiplicity="1" />
           <End Type="AFEIModel.History" Role="History" Multiplicity="*" />
         </Association>
+        <Association Name="FK_Product_Provider">
+          <End Type="AFEIModel.Provider" Role="Provider" Multiplicity="1" />
+          <End Type="AFEIModel.Product" Role="Product" Multiplicity="*" />
+        </Association>
         <Association Name="FK_Transaction_User">
           <End Type="AFEIModel.User" Role="User" Multiplicity="1" />
           <End Type="AFEIModel.Transaction" Role="Transaction" Multiplicity="*" />
@@ -538,10 +518,6 @@
         <Association Name="ProductPrice">
           <End Type="AFEIModel.Price" Role="Price" Multiplicity="*" />
           <End Type="AFEIModel.Product" Role="Product" Multiplicity="*" />
-        </Association>
-        <Association Name="ProductProvider">
-          <End Type="AFEIModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="AFEIModel.Provider" Role="Provider" Multiplicity="*" />
         </Association>
         <Association Name="TransactionProduct">
           <End Type="AFEIModel.Product" Role="Product" Multiplicity="*" />
@@ -677,6 +653,14 @@
               <ScalarProperty Name="Id" ColumnName="IdUser" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Product_Provider" TypeName="AFEIModel.FK_Product_Provider" StoreEntitySet="Product">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Provider">
+              <ScalarProperty Name="Id" ColumnName="IdProvider" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="FK_Transaction_User" TypeName="AFEIModel.FK_Transaction_User" StoreEntitySet="Transaction">
             <EndProperty Name="Transaction">
               <ScalarProperty Name="Id" ColumnName="Id" />
@@ -699,14 +683,6 @@
             </EndProperty>
             <EndProperty Name="Price">
               <ScalarProperty Name="Id" ColumnName="IdPrice" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ProductProvider" TypeName="AFEIModel.ProductProvider" StoreEntitySet="ProductProvider">
-            <EndProperty Name="Provider">
-              <ScalarProperty Name="Id" ColumnName="ProviderId" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="TransactionProduct" TypeName="AFEIModel.TransactionProduct" StoreEntitySet="TransactionProduct">

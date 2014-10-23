@@ -19,7 +19,6 @@ namespace AFEI.Models
             this.Histories = new HashSet<History>();
             this.Clients = new HashSet<Client>();
             this.Prices = new HashSet<Price>();
-            this.Providers = new HashSet<Provider>();
             this.Transactions = new HashSet<Transaction>();
         }
     
@@ -29,9 +28,9 @@ namespace AFEI.Models
         public int Quantity { get; set; }
     
         public virtual ICollection<History> Histories { get; set; }
+        public virtual Provider Provider { get; set; }
         public virtual ICollection<Client> Clients { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
-        public virtual ICollection<Provider> Providers { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

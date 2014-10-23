@@ -5,6 +5,7 @@
                       Title=""
                       Width="1100"
                       Height="700"
+                      WindowState="Maximized"
                       EnableDWMDropShadow="True"
                       Icon="Images/AFEIIcon.ico"
                       ResizeMode="NoResize">
@@ -30,21 +31,22 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0"
                 Grid.ColumnSpan="6"
-                Background="#E8E8E8 " />
+                Background="#B6B4A3" />
         <Border Grid.Row="0"
                 Grid.Column="0"
-                Background="#600000 ">
+                Background="#4D3F35 ">
             <TextBlock HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontFamily="#Andarilho Font normal.ttf"
-                       FontSize="60"
+                       FontSize="65"
                        Foreground="White"
                        Text="AFEI"
+                       Margin="0,0,3,0"
                        TextAlignment="Center" />
         </Border>
         <Border Grid.Row="1"
                 Grid.ColumnSpan="6"
-                Background="#909090" />
+                Background="#4D4C45" />
         <Button Grid.Row="1"
                 Grid.Column="5"
                 HorizontalContentAlignment="Right"
@@ -52,16 +54,18 @@
                 Click="ButtonBase_OnClick"
                 Content="Iniciar sesión"
                 FontSize="18"
+                Visibility="Hidden"
                 Foreground="#E0E0E0"
                 Style="{StaticResource BStyle}" />
-        <Button Grid.Row="1"
+        <Button x:Name="UserButton" Grid.Row="1"
                 Grid.Column="5"
                 HorizontalContentAlignment="Right"
                 Background="Transparent"
+                Click="UserButton_OnClick"
                 FontSize="18"
                 Foreground="#E0E0E0"
                 Style="{StaticResource BStyle}"
-                Visibility="Hidden">
+                Visibility="Visible">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock x:Name="UserTextBlock"
                            Margin="0,0,0,1"
@@ -74,14 +78,21 @@
                        Opacity=".4"
                        Source="Images/Down.png" />
             </StackPanel>
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="LogoutButton"
+                                  Click="LogoutButton_OnClick"
+                                  Header="Terminar Sesión" />
+                </ContextMenu>
+                </Button.ContextMenu>
         </Button>
         <StackPanel Grid.Row="2"
                     Grid.RowSpan="7"
-                    Background="#B0B0B0">
+                    Background="#4D3F35">
             <Button x:Name="HomeButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
-                    Background="#B0B0B0"
+                    Background="Transparent"
                     BorderThickness="0"
                     Click="HomeButton_OnClick"
                     Content="Inicio"
@@ -90,7 +101,7 @@
             <Button x:Name="ProviderButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
-                    Background="#B0B0B0"
+                    Background="Transparent"
                     BorderThickness="0"
                     Click="ProviderButton_OnClick"
                     Content="Proveedor"
@@ -100,7 +111,7 @@
             <Button x:Name="ClientButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
-                    Background="#B0B0B0"
+                    Background="Transparent"
                     BorderThickness="0"
                     Click="ClientButton_OnClick"
                     Content="Cliente"
@@ -109,7 +120,7 @@
             <Button x:Name="InventoryButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
-                    Background="#B0B0B0"
+                    Background="Transparent"
                     BorderThickness="0"
                     Click="InventoryButton_OnClick"
                     Content="Inventario"
@@ -118,7 +129,7 @@
             <Button x:Name="HistoryButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
-                    Background="#B0B0B0"
+                    Background="Transparent"
                     BorderThickness="0"
                     Click="HistoryButton_OnClick"
                     Content="Historial"
