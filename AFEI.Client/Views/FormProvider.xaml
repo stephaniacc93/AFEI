@@ -110,7 +110,7 @@
                 Margin="142,0,55,0"
                 Background="Teal"
                 Click="AddProviderButton_OnClick"
-                Content="Agregar Proveedor"
+                Content="Guardar Proveedor"
                 FontSize="18"
                 Foreground="White" />
     </Grid>

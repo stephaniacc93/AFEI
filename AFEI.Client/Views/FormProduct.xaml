@@ -123,7 +123,7 @@
                 Height="45"
                 Margin="142,0,55,0"
                 Background="Teal"
-                Content="Agregar Producto"
+                Content="Guardar Producto"
                 FontSize="18"
                 Foreground="White" />
     </Grid>

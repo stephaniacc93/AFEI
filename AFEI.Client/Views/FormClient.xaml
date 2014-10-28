@@ -88,7 +88,7 @@
                 Margin="142,0,55,0"
                 Background="Teal"
                 Click="ButtonBase_OnClick"
-                Content="Agregar Cliente"
+                Content="Guardar Cliente"
                 FontSize="18"
                 Foreground="White" />
     </Grid>
