@@ -5,14 +5,14 @@
                       Title=""
                       Width="1100"
                       Height="700"
-                      WindowState="Maximized"
                       EnableDWMDropShadow="True"
                       Icon="Images/AFEIIcon.ico"
-                      ResizeMode="NoResize">
+                      ResizeMode="NoResize"
+                      WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*" />
-            <RowDefinition Height=".5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height=".1*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -31,17 +31,17 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0"
                 Grid.ColumnSpan="6"
-                Background="#B6B4A3" />
+                Background="#f2f2f2" />
         <Border Grid.Row="0"
                 Grid.Column="0"
                 Background="#4D3F35 ">
-            <TextBlock HorizontalAlignment="Center"
+            <TextBlock Margin="0,0,3,0"
+                       HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontFamily="#Andarilho Font normal.ttf"
                        FontSize="65"
                        Foreground="White"
                        Text="AFEI"
-                       Margin="0,0,3,0"
                        TextAlignment="Center" />
         </Border>
         <Border Grid.Row="1"
@@ -54,16 +54,17 @@
                 Click="ButtonBase_OnClick"
                 Content="Iniciar sesión"
                 FontSize="18"
-                Visibility="Hidden"
                 Foreground="#E0E0E0"
-                Style="{StaticResource BStyle}" />
-        <Button x:Name="UserButton" Grid.Row="1"
+                Style="{StaticResource BStyle}"
+                Visibility="Hidden" />
+        <Button x:Name="UserButton"
+                Grid.Row="0"
                 Grid.Column="5"
                 HorizontalContentAlignment="Right"
                 Background="Transparent"
                 Click="UserButton_OnClick"
                 FontSize="18"
-                Foreground="#E0E0E0"
+                Foreground="DimGray"
                 Style="{StaticResource BStyle}"
                 Visibility="Visible">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
@@ -81,10 +82,10 @@
             <Button.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="LogoutButton"
-                                  Click="LogoutButton_OnClick"
-                                  Header="Terminar Sesión" />
+                              Click="LogoutButton_OnClick"
+                              Header="Terminar Sesión" />
                 </ContextMenu>
-                </Button.ContextMenu>
+            </Button.ContextMenu>
         </Button>
         <StackPanel Grid.Row="2"
                     Grid.RowSpan="7"

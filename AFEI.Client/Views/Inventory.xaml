@@ -6,10 +6,10 @@
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                              d:DesignWidth="1094"
-                               d:DesignHeight="569"
                                Width="Auto"
                                Height="Auto"
+                               d:DesignHeight="569"
+                               d:DesignWidth="1094"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -65,7 +65,8 @@
                 </xctk:WatermarkTextBox>
             </Grid>
         </StackPanel>
-        <Button Grid.Row="0"
+        <Button x:Name="AddProductButton"
+                Grid.Row="0"
                 Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Width="150"
@@ -74,6 +75,7 @@
                 HorizontalAlignment="Left"
                 Background="#385A5E"
                 BorderThickness="0"
+                Click="AddProductButton_OnClick"
                 Content="Agregar producto"
                 Foreground="#f2f2f2" />
         <DataGrid x:Name="InventoryDataGrid"
@@ -140,11 +142,13 @@
                 <DataGridTemplateColumn Header="Eliminar">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="70"
+                            <Button x:Name="DeleteProductButton"
+                                    Width="70"
                                     Height="25"
                                     HorizontalAlignment="Center"
                                     Background="#600000"
                                     BorderThickness="0"
+                                    Click="DeleteProductButton_OnClick"
                                     Content="Eliminar"
                                     FontSize="12"
                                     Foreground="#f2f2f2" />

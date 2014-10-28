@@ -16,23 +16,13 @@ using MahApps.Metro.Controls;
 namespace AFEI.Client.Views
 {
     /// <summary>
-    /// Interaction logic for Provider.xaml
+    /// Interaction logic for FormProvider.xaml
     /// </summary>
-    public partial class Provider : MetroContentControl
+    public partial class FormProvider : MetroContentControl
     {
-        public Provider()
+        public FormProvider()
         {
             InitializeComponent();
-            Models.Provider provider = new Models.Provider();
-            provider.Id = 1;
-            provider.FirstName = "Juan";
-            provider.LastName = "Perez";
-            provider.Phone = "3456789";
-            provider.Company = "Empresa";
-            provider.Email = "juan@perez.com";
-            List<Models.Provider> providers = new List<Models.Provider>();
-            providers.Add(provider);
-            ProviderDataGrid.ItemsSource = providers;
         }
 
         public delegate void AddProviderClickedHandler();
@@ -48,16 +38,6 @@ namespace AFEI.Client.Views
         private void AddProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
             OnAddProviderClicked();
-        }
-
-        private void EditProvider_OnClick(object sender, RoutedEventArgs e)
-        {
-            OnAddProviderClicked();
-        }
-
-        private void DeleteProviderButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

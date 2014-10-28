@@ -16,18 +16,13 @@ using MahApps.Metro.Controls;
 namespace AFEI.Client.Views
 {
     /// <summary>
-    /// Interaction logic for Client.xaml
+    /// Interaction logic for FormClient.xaml
     /// </summary>
-    public partial class Client : MetroContentControl
+    public partial class FormClient : MetroContentControl
     {
-        public Client()
+        public FormClient()
         {
             InitializeComponent();
-        }
-
-        private void AddClientButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            OnAddClientClicked();
         }
 
         public delegate void AddClientClickedHandler();
@@ -40,14 +35,9 @@ namespace AFEI.Client.Views
             }
         }
 
-        private void EditClientButton_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             OnAddClientClicked();
-        }
-
-        private void DeleteClientButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

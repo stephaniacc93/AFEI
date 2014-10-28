@@ -28,19 +28,51 @@ namespace AFEI.Client
         Inventory inventory = new Inventory();
         ChangesHistory changesHistory = new ChangesHistory();
         ProductHistory productHistory = new ProductHistory();
-        AddClient addClient = new AddClient();
+        FormClient formClient = new FormClient();
         Login login = new Login();
+        FormProduct formProduct = new FormProduct();
+        FormProvider formProvider = new FormProvider();
 
         public MainWindow()
         {
             InitializeComponent();
             Content.Content = menu;
             client.AddClientClicked += client_AddClientClicked;
+            formClient.AddClientClicked += FormClientFormClientClicked;
+            formProduct.AddProductClicked += FormProductFormProductClicked;
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            provider.AddProviderClicked += provider_AddProviderClicked;
+            formProvider.AddProviderClicked += FormProviderFormProviderClicked;
+        }
+
+        void FormProviderFormProviderClicked()
+        {
+            Content.Content = provider;
+        }
+
+        void provider_AddProviderClicked()
+        {
+            Content.Content = formProvider;
+        }
+
+        void inventory_AddProductClicked()
+        {
+            Content.Content = formProduct;
+        }
+
+        void FormProductFormProductClicked()
+        {
+            Content.Content = inventory;
+        }
+
+        void FormClientFormClientClicked()
+        {
+            Content.Content = client;
         }
 
         void client_AddClientClicked()
         {
-            Content.Content = addClient;
+            Content.Content = formClient;
         }
 
         private void HomeButton_OnClick(object sender, RoutedEventArgs e)
@@ -86,7 +118,7 @@ namespace AFEI.Client
 
         private void LogoutButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void UserButton_OnClick(object sender, RoutedEventArgs e)

@@ -16,11 +16,11 @@ using MahApps.Metro.Controls;
 namespace AFEI.Client.Views
 {
     /// <summary>
-    /// Interaction logic for Inventory.xaml
+    /// Interaction logic for FormProduct.xaml
     /// </summary>
-    public partial class Inventory : MetroContentControl
+    public partial class FormProduct : MetroContentControl
     {
-        public Inventory()
+        public FormProduct()
         {
             InitializeComponent();
         }
@@ -38,11 +38,6 @@ namespace AFEI.Client.Views
         private void AddProductButton_OnClick(object sender, RoutedEventArgs e)
         {
             OnAddProductClicked();
-        }
-
-        private void DeleteProductButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }
