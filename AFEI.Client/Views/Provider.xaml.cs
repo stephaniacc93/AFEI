@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AFEI.Client.Font;
 using MahApps.Metro.Controls;
+using Microsoft.Win32;
+using Microsoft.Windows.Controls.Primitives;
 
 namespace AFEI.Client.Views
 {
@@ -58,6 +63,11 @@ namespace AFEI.Client.Views
         private void DeleteProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void ExportToExcelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+           ExportToExcel.Export(ProviderDataGrid);
         }
     }
 }

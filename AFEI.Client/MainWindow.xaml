@@ -38,7 +38,7 @@
             <TextBlock Margin="0,0,15,0"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontFamily="#Andarilho Font normal.ttf"
+                       FontFamily="../Font/#Andarilho Font normal.ttf"
                        FontSize="65"
                        Foreground="White"
                        Text="AFEI"
@@ -47,8 +47,10 @@
         <Border Grid.Row="1"
                 Grid.ColumnSpan="6"
                 Background="#4D4C45" />
-        <Button Grid.Row="1"
+        <Button Grid.Row="0"
                 Grid.Column="5"
+                Width="100"
+                Height="30"
                 HorizontalContentAlignment="Right"
                 Background="Transparent"
                 Click="ButtonBase_OnClick"
@@ -57,36 +59,52 @@
                 Foreground="#E0E0E0"
                 Style="{StaticResource BStyle}"
                 Visibility="Hidden" />
-        <Button x:Name="UserButton"
-                Grid.Row="0"
-                Grid.Column="5"
-                HorizontalContentAlignment="Right"
-                Background="Transparent"
-                Click="UserButton_OnClick"
-                FontSize="18"
-                Foreground="DimGray"
-                Style="{StaticResource BStyle}"
-                Visibility="Visible">
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <TextBlock x:Name="UserTextBlock"
-                           Margin="0,0,0,1"
-                           Text="User"
-                           TextWrapping="Wrap" />
-                <Image Width="20"
-                       Height="20"
-                       Margin="10,0,0,0"
-                       VerticalAlignment="Bottom"
-                       Opacity=".4"
-                       Source="Images/Down.png" />
-            </StackPanel>
-            <Button.ContextMenu>
-                <ContextMenu>
-                    <MenuItem x:Name="LogoutButton"
-                              Click="LogoutButton_OnClick"
-                              Header="Terminar Sesión" />
-                </ContextMenu>
-            </Button.ContextMenu>
-        </Button>
+        <StackPanel x:Name="UserStackPanel"
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <Button x:Name="NotificationsButton"
+                    Width="40"
+                    Height="40"
+                    BorderThickness="0"
+                    Background="Teal"
+                    Click="NotificationsButton_OnClick"
+                    Content="0"
+                    Style="{DynamicResource MetroCircleButtonStyle}" />
+            <Button x:Name="UserButton"
+                    Width="100"
+                    Height="30"
+                    HorizontalContentAlignment="Right"
+                    Background="Transparent"
+                    Click="UserButton_OnClick"
+                    FontSize="18"
+                    Foreground="DimGray"
+                    Style="{StaticResource BStyle}"
+                    Visibility="Visible">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                    <TextBlock x:Name="UserTextBlock"
+                               Margin="0,0,0,1"
+                               VerticalAlignment="Center"
+                               Text="User"
+                               TextWrapping="Wrap" />
+                    <Image Width="20"
+                           Height="20"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           Opacity=".4"
+                           Source="Images/Down.png" />
+                </StackPanel>
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="LogoutButton"
+                                  Click="LogoutButton_OnClick"
+                                  Header="Terminar Sesión" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+        </StackPanel>
         <StackPanel Grid.Row="2"
                     Grid.RowSpan="7"
                     Background="#4D3F35">

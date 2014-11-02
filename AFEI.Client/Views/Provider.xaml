@@ -34,50 +34,67 @@
                    FontSize="20"
                    Text="Proveedores" />
         <StackPanel Grid.Row="0"
-                    Grid.Column="3"
-                    Margin="0,25,10,0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-            <Grid Width="180"
-                  Height="30"
-                  Background="#FF212121">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0"
-                       Width="30"
-                       Margin="5"
-                       Source="../Images/SearchIcon.png" />
-                <xctk:WatermarkTextBox x:Name="SearchTextBox"
-                                       Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Background="Transparent"
-                                       BorderThickness="0"
-                                       FontSize="15"
-                                       Foreground="White"
-                                       Padding="5">
-                    <xctk:WatermarkTextBox.Watermark>
-                        <TextBlock FontSize="15"
-                                   Foreground="WhiteSmoke"
-                                   Text="Search..." />
-                    </xctk:WatermarkTextBox.Watermark>
-                </xctk:WatermarkTextBox>
-            </Grid>
+            <StackPanel Margin="0,25,10,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button x:Name="ExportToExcelButton"
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Width="150"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Right"
+                        Background="DarkGreen"
+                        BorderThickness="0"
+                        Click="ExportToExcelButton_OnClick"
+                        Content="Exportar a Excel"
+                        Foreground="#f2f2f2" />
+
+                <Button x:Name="AddProviderButton"
+                        Width="150"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Left"
+                        Background="#385A5E"
+                        BorderThickness="0"
+                        Click="AddProviderButton_OnClick"
+                        Content="Agregar proveedor"
+                        Foreground="#f2f2f2" />
+
+                <Grid Width="180"
+                      Height="30"
+                      Background="#FF212121">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"
+                           Width="30"
+                           Margin="5"
+                           Source="../Images/SearchIcon.png" />
+                    <xctk:WatermarkTextBox x:Name="SearchTextBox"
+                                           Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           Background="Transparent"
+                                           BorderThickness="0"
+                                           FontSize="15"
+                                           Foreground="White"
+                                           Padding="5">
+                        <xctk:WatermarkTextBox.Watermark>
+                            <TextBlock FontSize="15"
+                                       Foreground="WhiteSmoke"
+                                       Text="Search..." />
+                        </xctk:WatermarkTextBox.Watermark>
+                    </xctk:WatermarkTextBox>
+                </Grid>
+            </StackPanel>
         </StackPanel>
-        <Button x:Name="AddProviderButton"
-                Grid.Row="0"
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
-                Width="150"
-                Height="30"
-                Margin="190,25,0,0"
-                HorizontalAlignment="Left"
-                Background="#385A5E"
-                BorderThickness="0"
-                Click="AddProviderButton_OnClick"
-                Content="Agregar proveedor"
-                Foreground="#f2f2f2" />
         <DataGrid x:Name="ProviderDataGrid"
                   Grid.Row="1"
                   Grid.RowSpan="4"
@@ -154,5 +171,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </controls1:MetroContentControl>
