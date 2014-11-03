@@ -39,7 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientBusiness.cs" />
+    <Compile Include="IBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AFEI.Data\AFEI.Data.csproj">
+      <Project>{bd3a6e92-113d-4962-8ea5-a693229dec00}</Project>
+      <Name>AFEI.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AFEI.Models\AFEI.Models.csproj">
+      <Project>{11778d31-a59b-4888-b605-9712635e35c2}</Project>
+      <Name>AFEI.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

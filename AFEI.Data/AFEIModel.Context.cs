@@ -7,19 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using AFEI.Models;
-
 namespace AFEI.Data
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using AFEI.Models;
+    
     
     public partial class AFEIEntities : DbContext
     {
         public AFEIEntities()
             : base("name=AFEIEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
