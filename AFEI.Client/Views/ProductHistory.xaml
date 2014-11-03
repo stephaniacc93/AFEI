@@ -6,10 +6,10 @@
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                              d:DesignWidth="1094"
-                               d:DesignHeight="569"
                                Width="Auto"
                                Height="Auto"
+                               d:DesignHeight="569"
+                               d:DesignWidth="1094"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -34,36 +34,54 @@
                    FontSize="20"
                    Text="Historial de Productos" />
         <StackPanel Grid.Row="0"
-                    Grid.Column="3"
-                    Margin="0,25,10,0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,0"
                     HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
                     Orientation="Horizontal">
-            <Grid Width="180"
-                  Height="30"
-                  Background="#FF212121">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0"
-                       Width="30"
-                       Margin="5"
-                       Source="../Images/SearchIcon.png" />
-                <xctk:WatermarkTextBox x:Name="SearchTextBox"
-                                       Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Background="Transparent"
-                                       BorderThickness="0"
-                                       FontSize="15"
-                                       Foreground="White"
-                                       Padding="5">
-                    <xctk:WatermarkTextBox.Watermark>
-                        <TextBlock FontSize="15"
-                                   Foreground="WhiteSmoke"
-                                   Text="Search..." />
-                    </xctk:WatermarkTextBox.Watermark>
-                </xctk:WatermarkTextBox>
-            </Grid>
+            <Button x:Name="ExportToExcelButton"
+                    Width="150"
+                    Height="30"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Right"
+                    Background="DarkGreen"
+                    BorderThickness="0"
+                    Click="ExportToExcelButton_OnClick"
+                    Content="Exportar a Excel"
+                    Foreground="#f2f2f2" />
+            <StackPanel Grid.Row="0"
+                        Grid.Column="3"
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Grid Width="180"
+                      Height="30"
+                      Background="#FF212121">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"
+                           Width="30"
+                           Margin="5"
+                           Source="../Images/SearchIcon.png" />
+                    <xctk:WatermarkTextBox x:Name="SearchTextBox"
+                                           Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           Background="Transparent"
+                                           BorderThickness="0"
+                                           FontSize="15"
+                                           Foreground="White"
+                                           Padding="5">
+                        <xctk:WatermarkTextBox.Watermark>
+                            <TextBlock FontSize="15"
+                                       Foreground="WhiteSmoke"
+                                       Text="Search..." />
+                        </xctk:WatermarkTextBox.Watermark>
+                    </xctk:WatermarkTextBox>
+                </Grid>
+            </StackPanel>
         </StackPanel>
         <DataGrid x:Name="ProductHistoryDataGrid"
                   Grid.Row="1"
@@ -96,9 +114,9 @@
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Producto" />
-                <DataGridTextColumn Binding="{Binding Provider}"
+                <DataGridTextColumn Width=".7*"
+                                    Binding="{Binding Provider}"
                                     CanUserSort="False"
-                                    Width=".7*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Proveedor" />
                 <DataGridTextColumn Width=".7*"

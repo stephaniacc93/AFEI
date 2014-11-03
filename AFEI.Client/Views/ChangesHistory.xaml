@@ -34,8 +34,25 @@
                    FontSize="20"
                    Text="Historial de Movimientos" />
         <StackPanel Grid.Row="0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+            <Button x:Name="ExportToExcelButton"
+                    Width="150"
+                    Height="30"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Right"
+                    Background="DarkGreen"
+                    BorderThickness="0"
+                    Click="ExportToExcelButton_OnClick"
+                    Content="Exportar a Excel"
+                    Foreground="#f2f2f2" />
+            <StackPanel Grid.Row="0"
                     Grid.Column="3"
-                    Margin="0,25,10,0"
+                    Margin="0,0,10,0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
             <Grid Width="180"
@@ -65,6 +82,7 @@
                 </xctk:WatermarkTextBox>
             </Grid>
         </StackPanel>
+            </StackPanel>
         <DataGrid x:Name="ChangesHistoryDataGrid"
                   Grid.Row="1"
                   Grid.RowSpan="4"
