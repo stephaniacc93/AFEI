@@ -47,31 +47,36 @@
         <Border Grid.Row="1"
                 Grid.ColumnSpan="6"
                 Background="#4D4C45" />
-        <Button Grid.Row="0"
-                Grid.Column="5"
-                Width="100"
-                Height="30"
-                HorizontalContentAlignment="Right"
-                Background="Transparent"
-                Click="ButtonBase_OnClick"
-                Content="Iniciar sesión"
-                FontSize="18"
-                Foreground="#E0E0E0"
-                Style="{StaticResource BStyle}"
-                Visibility="Hidden" />
+        <StackPanel x:Name="LoginStackPanel"
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Visibility="Hidden">
+            <Button HorizontalContentAlignment="Right"
+                    Background="Transparent"
+                    Click="ButtonBase_OnClick"
+                    Content="Iniciar sesión"
+                    FontSize="18"
+                    Foreground="DimGray"
+                    Style="{StaticResource BStyle}" />
+        </StackPanel>
+
         <StackPanel x:Name="UserStackPanel"
                     Grid.Row="0"
                     Grid.Column="5"
                     HorizontalAlignment="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    Visibility="Visible">
             <Button x:Name="NotificationsButton"
                     Width="40"
                     Height="40"
-                    BorderThickness="0"
                     Background="Teal"
+                    BorderThickness="0"
                     Click="NotificationsButton_OnClick"
                     Content="0"
                     Style="{DynamicResource MetroCircleButtonStyle}" />
+
             <Button x:Name="UserButton"
                     Width="100"
                     Height="30"
@@ -80,8 +85,7 @@
                     Click="UserButton_OnClick"
                     FontSize="18"
                     Foreground="DimGray"
-                    Style="{StaticResource BStyle}"
-                    Visibility="Visible">
+                    Style="{StaticResource BStyle}">
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
 
                     <TextBlock x:Name="UserTextBlock"
@@ -125,7 +129,8 @@
                     Click="ProviderButton_OnClick"
                     Content="Proveedor"
                     FontSize="18"
-                    Foreground="#E0E0E0" />
+                    Foreground="#E0E0E0"
+                    Visibility="Visible" />
 
             <Button x:Name="ClientButton"
                     Height="40"
@@ -135,7 +140,8 @@
                     Click="ClientButton_OnClick"
                     Content="Cliente"
                     FontSize="18"
-                    Foreground="#E0E0E0" />
+                    Foreground="#E0E0E0"
+                    Visibility="Visible" />
             <Button x:Name="InventoryButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
@@ -144,7 +150,8 @@
                     Click="InventoryButton_OnClick"
                     Content="Inventario"
                     FontSize="18"
-                    Foreground="#E0E0E0" />
+                    Foreground="#E0E0E0"
+                    Visibility="Visible" />
             <Button x:Name="HistoryButton"
                     Height="40"
                     HorizontalContentAlignment="Left"
@@ -153,7 +160,8 @@
                     Click="HistoryButton_OnClick"
                     Content="Historial"
                     FontSize="18"
-                    Foreground="#E0E0E0">
+                    Foreground="#E0E0E0"
+                    Visibility="Visible">
                 <Button.ContextMenu>
                     <ContextMenu>
                         <MenuItem x:Name="ChangesHistory"
