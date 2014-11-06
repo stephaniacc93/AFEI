@@ -39,9 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangesLogBusiness.cs" />
     <Compile Include="ClientBusiness.cs" />
+    <Compile Include="HistoryBusiness.cs" />
     <Compile Include="IBusiness.cs" />
+    <Compile Include="PriceBusiness.cs" />
+    <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderBusiness.cs" />
+    <Compile Include="TransactionBusiness.cs" />
+    <Compile Include="UserBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AFEI.Data\AFEI.Data.csproj">

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AFEI.Data;
+using AFEI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AFEI.Data;
-using AFEI.Models;
 
 namespace AFEI.Business
 {
@@ -12,7 +12,7 @@ namespace AFEI.Business
     {
         private UnitOfWork _unitOfWork = new UnitOfWork();
         public void Create(Client entity)
-        {
+        {   
             _unitOfWork.ClientRepository.Insert(entity);
             _unitOfWork.CommitChanges();
         }
