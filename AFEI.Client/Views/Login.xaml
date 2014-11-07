@@ -72,6 +72,7 @@
                 Margin="87,10,36,54"
                 Background="Teal"
                 Content="Iniciar sesión"
-                Foreground="#f2f2f2" />
+                Foreground="#f2f2f2"
+                Click="LoginButton_Click"/>
     </Grid>
 </controls1:MetroContentControl>
