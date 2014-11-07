@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using AFEI.Models;
+using AFEI.Business;
 
 namespace AFEI.Client.Views
 {
@@ -23,6 +25,38 @@ namespace AFEI.Client.Views
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            string username = UserTextBox.Text;
+            string password = PasswordTextBox.Password;
+            if (isUserValid(username, password))
+            {
+                //go to main page
+            }
+            else
+            {
+                //do nothing (method isUserValid returns message error
+            }
+        }
+
+        private bool isUserValid(string username, string password)
+        {
+            UserBusiness userB = new UserBusiness();
+            List<User> users = userB.GetList();
+            foreach (User user in users)
+            {
+                bool isUsernameCorrect = false;
+                bool isPasswordCorrect = false;
+                if (user.Username == username)
+                    isUsernameCorrect = true;
+                if (user.Password == password)
+                    isPasswordCorrect = true;
+                if (isUsernameCorrect && isPasswordCorrect)
+                    return true;
+            }
+            return false;
         }
     }
 }
