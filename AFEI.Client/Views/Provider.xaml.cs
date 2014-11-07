@@ -40,24 +40,25 @@ namespace AFEI.Client.Views
             ProviderDataGrid.ItemsSource = providers;
         }
 
-        public delegate void AddProviderClickedHandler();
+        public delegate void AddProviderClickedHandler(object o);
         public event AddProviderClickedHandler AddProviderClicked;
-        public void OnAddProviderClicked()
+        public void OnAddProviderClicked(object o)
         {
             if (AddProviderClicked != null)
             {
-                AddProviderClicked();
+                AddProviderClicked(o);
             }
         }
 
         private void AddProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
-            OnAddProviderClicked();
+            OnAddProviderClicked(new Models.Provider());
         }
 
         private void EditProvider_OnClick(object sender, RoutedEventArgs e)
         {
-            OnAddProviderClicked();
+            Models.Provider  p = (Models.Provider)ProviderDataGrid.SelectedItem;
+            OnAddProviderClicked(p);
         }
 
         private void DeleteProviderButton_OnClick(object sender, RoutedEventArgs e)

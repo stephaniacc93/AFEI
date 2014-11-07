@@ -38,8 +38,9 @@ namespace AFEI.Client
             Content.Content = provider;
         }
 
-        void provider_AddProviderClicked()
+        void provider_AddProviderClicked(object o)
         {
+            formProvider = new FormProvider(o);
             Content.Content = formProvider;
         }
 

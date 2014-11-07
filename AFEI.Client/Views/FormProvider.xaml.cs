@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using AFEI.Business;
+﻿using AFEI.Business;
 using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
+using System.Windows;
 
 namespace AFEI.Client.Views
 {
@@ -24,6 +12,11 @@ namespace AFEI.Client.Views
     {
         private FormProviderModel _viewModel;
         private Models.Provider _provider;
+
+        public FormProvider()
+        {
+                
+        }
         public FormProvider(object o)
         {
             InitializeComponent();
