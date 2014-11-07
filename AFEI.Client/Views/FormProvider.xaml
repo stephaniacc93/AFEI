@@ -51,6 +51,7 @@
                  Width="200"
                  Height="40"
                  FontFamily="Segoe UI Light"
+                 Text="{Binding Provider.FirstName, Mode=TwoWay}"
                  FontSize="20" />
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
@@ -65,12 +66,14 @@
                  Width="200"
                  Height="40"
                  FontFamily="Segoe UI Light"
+                 Text="{Binding Provider.LastName, Mode=TwoWay}"
                  FontSize="20" />
         <TextBox x:Name="TelefonoTextBox"
                  Grid.Row="3"
                  Grid.Column="2"
                  Width="200"
                  Height="40"
+                 Text="{Binding Provider.Phone, Mode=TwoWay}"
                  FontFamily="Segoe UI Light"
                  FontSize="20" />
         <TextBlock Grid.Row="3"
@@ -85,6 +88,7 @@
                  Grid.Column="2"
                  Width="200"
                  Height="40"
+                 Text="{Binding Provider.Company, Mode=TwoWay}"
                  FontFamily="Segoe UI Light"
                  FontSize="20" />
         <TextBlock Grid.Row="4"
@@ -99,6 +103,7 @@
                  Grid.Column="2"
                  Width="200"
                  Height="40"
+                 Text="{Binding Provider.Email, Mode=TwoWay}"
                  FontFamily="Segoe UI Light"
                  FontSize="20" />
         <Button x:Name="AddProviderButton"

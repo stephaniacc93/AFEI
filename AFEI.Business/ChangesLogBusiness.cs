@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AFEI.Business
 {
-    class ChangesLogBusiness :IBusiness<ChangesLog>
+    public class ChangesLogBusiness :IBusiness<ChangesLog>
     {
         private UnitOfWork _unitOfWork = new UnitOfWork();
         public void Create(ChangesLog entity)

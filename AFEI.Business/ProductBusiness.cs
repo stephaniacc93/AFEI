@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AFEI.Business
 {
-    class ProductBusiness:IBusiness<Product>
+    public class ProductBusiness:IBusiness<Product>
     {
         private UnitOfWork _unitOfWork = new UnitOfWork();
         public void Create(Product entity)

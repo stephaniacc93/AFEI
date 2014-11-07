@@ -92,6 +92,7 @@
     </ApplicationDefinition>
     <Compile Include="Font\ExportToExcel.cs" />
     <Compile Include="Helpers\AutoCompleteFocusableBox.cs" />
+    <Compile Include="ViewModels\FormProviderModel.cs" />
     <Compile Include="Views\FormClient.xaml.cs">
       <DependentUpon>FormClient.xaml</DependentUpon>
     </Compile>
