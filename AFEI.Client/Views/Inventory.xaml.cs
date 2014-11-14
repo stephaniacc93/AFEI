@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using AFEI.Business;
 using AFEI.Client.Font;
+using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
+using System;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace AFEI.Client.Views
 {
@@ -21,9 +13,21 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class Inventory : MetroContentControl
     {
+        private InventoryModel _viewModel;
+        private List<Models.Product> _inventory;
         public Inventory()
         {
             InitializeComponent();
+        }
+
+        public Inventory(Object o)
+        {
+            InitializeComponent();
+            ProductBusiness clientBusiness = new ProductBusiness();
+            _inventory = (List<AFEI.Models.Product>)o;
+            _inventory = clientBusiness.GetList();
+            _viewModel = new InventoryModel(_inventory);
+            DataContext = _viewModel;
         }
 
         public delegate void AddProductClickedHandler();

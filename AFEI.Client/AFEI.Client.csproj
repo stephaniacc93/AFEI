@@ -100,7 +100,15 @@
     </ApplicationDefinition>
     <Compile Include="Font\ExportToExcel.cs" />
     <Compile Include="Helpers\AutoCompleteFocusableBox.cs" />
+    <Compile Include="ViewModels\ChangesHistoryModel.cs" />
+    <Compile Include="ViewModels\ClientModel.cs" />
+    <Compile Include="ViewModels\FormClientModel.cs" />
+    <Compile Include="ViewModels\FormProductModel.cs" />
     <Compile Include="ViewModels\FormProviderModel.cs" />
+    <Compile Include="ViewModels\InventoryModel.cs" />
+    <Compile Include="ViewModels\LoginModel.cs" />
+    <Compile Include="ViewModels\ProductHistoryModel.cs" />
+    <Compile Include="ViewModels\ProviderModel.cs" />
     <Compile Include="Views\FormClient.xaml.cs">
       <DependentUpon>FormClient.xaml</DependentUpon>
     </Compile>

@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using AFEI.Business;
 using AFEI.Client.Font;
+using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
+using System;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace AFEI.Client.Views
 {
@@ -21,9 +13,21 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class Client : MetroContentControl
     {
+        private ClientModel _viewModel;
+        private List<Models.Client> _clients;
         public Client()
         {
             InitializeComponent();
+        }
+
+        public Client(Object o)
+        {
+            InitializeComponent();
+            ClientBusiness clientBusiness = new ClientBusiness();
+            _clients = (List<AFEI.Models.Client>)o;
+            _clients = clientBusiness.GetList();
+            _viewModel = new ClientModel(_clients);
+            DataContext = _viewModel;
         }
 
         private void AddClientButton_OnClick(object sender, RoutedEventArgs e)

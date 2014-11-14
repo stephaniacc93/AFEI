@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using AFEI.Business;
+using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
+using System.Windows;
 
 namespace AFEI.Client.Views
 {
@@ -20,9 +10,22 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class FormProduct : MetroContentControl
     {
+        private FormProductModel _viewModel;
+        private Models.Product _product;
+
         public FormProduct()
         {
+                
+        }
+        public FormProduct(object o)
+        {
             InitializeComponent();
+            ProductBusiness productBusiness = new ProductBusiness();
+            _product = (AFEI.Models.Product)o;
+            if (_product.Id != 0)
+                _product = productBusiness.Read(_product.Id);
+            _viewModel = new FormProductModel(_product);
+            DataContext = _viewModel;
         }
 
         public delegate void AddProductClickedHandler();

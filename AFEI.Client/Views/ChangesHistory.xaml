@@ -87,6 +87,7 @@
                   Grid.Row="1"
                   Grid.RowSpan="4"
                   Grid.ColumnSpan="4"
+                  ItemsSource="{Binding History, Mode=TwoWay}"
                   Height="350"
                   Margin="10,20,10,0"
                   VerticalAlignment="Top"

@@ -51,6 +51,7 @@
                  Width="200"
                  Height="40"
                  FontFamily="Segoe UI Light"
+                 Text="{Binding Product.Name, Mode=TwoWay}"
                  FontSize="20" />
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
@@ -67,6 +68,7 @@
                  Width="200"
                  Height="80"
                  FontFamily="Segoe UI Light"
+                 Text="{Binding Product.Description, Mode=TwoWay}"
                  FontSize="20" />
 
         <TextBlock Grid.Row="3"
@@ -82,6 +84,7 @@
                  Width="200"
                  Height="40"
                  FontFamily="Segoe UI Light"
+                 Text="{Binding Product.Quantity, Mode=TwoWay}"
                  FontSize="20" />
         <TextBlock Grid.Row="4"
                    Grid.Column="1"
@@ -98,6 +101,7 @@
                                           Background="#252525"
                                           FilterMode="Contains"
                                           FontFamily="Segoe UI Light"
+                                          Text="{Binding Product.Provider, Mode=TwoWay}"
                                           FontSize="20"
                                           Foreground="White"
                                           IsTextCompletionEnabled="True"
