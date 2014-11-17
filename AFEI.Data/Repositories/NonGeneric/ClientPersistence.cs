@@ -56,15 +56,12 @@ namespace AFEI.Data.Repositories.NonGeneric
                 using (var AFEIEntities = new AFEIEntities())
                 {
                     var stub = new Client() { Id = entity.Id };
-                    stub.FirstName = entity.FirstName;
-                    stub.LastName = entity.LastName;
-                    stub.Phone = entity.Phone;
-                    stub.Products = entity.Products;
-                    AFEIEntities.SaveChanges();
-
-                    var client = AFEIEntities.Clients
-                        .Include("Products");
-
+                    //stub.FirstName = entity.FirstName;
+                    //stub.LastName = entity.LastName;
+                    //stub.Phone = entity.Phone;
+                    //stub.Products = entity.Products;
+                    AFEIEntities.Clients.Attach(stub);
+                    AFEIEntities.Clients.ApplyCurrentValues(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Clients.Single(x => x.Id == entity.Id);
 

@@ -26,27 +26,40 @@ namespace AFEI.Client.Views
 
         private void AddClientButton_OnClick(object sender, RoutedEventArgs e)
         {
-            OnAddClientClicked();
+            OnAddClientClicked(new Models.Client());
         }
 
-        public delegate void AddClientClickedHandler();
+        public delegate void AddClientClickedHandler(object o);
         public event AddClientClickedHandler AddClientClicked;
-        public void OnAddClientClicked()
+        public void OnAddClientClicked(object o)
         {
             if (AddClientClicked != null)
             {
-                AddClientClicked();
+                AddClientClicked(o);
+            }
+        }
+
+        public delegate void DeleteClientClickedHandler();
+        public event DeleteClientClickedHandler DeleteClientClicked;
+        public void OnDeleteClientClicked()
+        {
+            if (DeleteClientClicked != null)
+            {
+                DeleteClientClicked();
             }
         }
 
         private void EditClientButton_OnClick(object sender, RoutedEventArgs e)
         {
-            OnAddClientClicked();
+            var o = (Models.Client)ClientDataGrid.SelectedItem;
+            OnAddClientClicked(o);
         }
 
         private void DeleteClientButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var o = (Models.Client)ClientDataGrid.SelectedItem;
+            clientBusiness.Delete(o.Id);
+            OnDeleteClientClicked();
         }
 
         private void ExportToExcelButton_OnClick(object sender, RoutedEventArgs e)

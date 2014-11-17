@@ -29,7 +29,7 @@ namespace AFEI.Client
             InitializeComponent();
             Content.Content = menu;
             client.AddClientClicked += client_AddClientClicked;
-            formClient.AddClientClicked += FormClientFormClientClicked;
+            client.DeleteClientClicked += client_DeleteClientClicked;
             formProduct.AddProductClicked += FormProductFormProductClicked;
             inventory.AddProductClicked += inventory_AddProductClicked;
             inventory.AddInventoryClicked += inventory_AddInventoryClicked;
@@ -37,6 +37,14 @@ namespace AFEI.Client
             inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
             provider.AddProviderClicked += provider_AddProviderClicked;
             formProvider.AddProviderClicked += FormProviderFormProviderClicked;
+        }
+
+        void client_DeleteClientClicked()
+        {
+            client = new Views.Client();
+            client.AddClientClicked += client_AddClientClicked;
+            client.DeleteClientClicked += client_DeleteClientClicked;
+            Content.Content = client;
         }
 
         void inventory_DeleteProductClicked()
@@ -122,14 +130,20 @@ namespace AFEI.Client
             Content.Content = inventory;
         }
 
-        void FormClientFormClientClicked()
+
+        void client_AddClientClicked(object o)
         {
-            Content.Content = client;
+            formClient = new FormClient(o);
+            formClient.AddClientClicked += formClient_AddClientClicked;
+            Content.Content = formClient;
         }
 
-        void client_AddClientClicked()
+        void formClient_AddClientClicked()
         {
-            Content.Content = formClient;
+            client = new Views.Client();
+            client.AddClientClicked += client_AddClientClicked;
+            client.DeleteClientClicked += client_DeleteClientClicked;
+            Content.Content = client;
         }
 
         private void HomeButton_OnClick(object sender, RoutedEventArgs e)

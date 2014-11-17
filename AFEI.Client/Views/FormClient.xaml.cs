@@ -13,6 +13,7 @@ namespace AFEI.Client.Views
     {
         private FormClientModel _viewModel;
         private Models.Client _client;
+        ClientBusiness clientBusiness = new ClientBusiness();
 
         public FormClient()
         {
@@ -42,6 +43,10 @@ namespace AFEI.Client.Views
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            if(_viewModel.Client.Id != 0)
+                clientBusiness.Update(_viewModel.Client);
+            else
+                clientBusiness.Create(_viewModel.Client);
             OnAddClientClicked();
         }
     }
