@@ -12,6 +12,7 @@ namespace AFEI.Client.Views
     {
         private FormProductModel _viewModel;
         private Models.Product _product;
+        ProductBusiness productBusiness = new ProductBusiness();
 
         public FormProduct()
         {
@@ -40,7 +41,24 @@ namespace AFEI.Client.Views
 
         private void AddProductButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if(_viewModel.Product.Id !=0)
+              productBusiness.Update(_viewModel.Product);
+            else
+                productBusiness.Create(_viewModel.Product);
             OnAddProductClicked();
+        }
+
+        private void ProviderTextBox_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (ProviderTextBox.SelectedItem != null)
+            {
+                if (string.IsNullOrWhiteSpace(ProviderTextBox.Text))
+                {
+                    Models.Provider provider = (Models.Provider)ProviderTextBox.SelectedItem;
+                    ProviderTextBox.Text = provider.Company;
+                    _viewModel.Product.Provider.Id = provider.Id;
+                }
+            }
         }
     }
 }

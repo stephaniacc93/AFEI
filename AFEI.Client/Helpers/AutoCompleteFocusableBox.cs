@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace AFEI.Client.Helpers
 {
-    public class AutoCompleteFocusableBox : AutoCompleteBox
+    public class AutoCompleteFocusableBox : System.Windows.Controls.AutoCompleteBox
     {
         public override void OnApplyTemplate()
         {

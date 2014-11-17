@@ -11,7 +11,7 @@ namespace AFEI.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class History
     {
         public int Id { get; set; }

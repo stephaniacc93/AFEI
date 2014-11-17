@@ -64,9 +64,14 @@
       <DependentUpon>AFEIModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Repositories\NonGeneric\ChangesLogPersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\ClientPersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\HistoryPersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\PricePersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\ProductPersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\ProviderPersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\TransactionPersistence.cs" />
+    <Compile Include="Repositories\NonGeneric\UserPersistence.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="AFEIModel.edmx">

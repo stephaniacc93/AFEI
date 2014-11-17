@@ -99,7 +99,7 @@
                   Grid.Row="1"
                   Grid.RowSpan="4"
                   Grid.ColumnSpan="4"
-                  ItemsSource="{Binding Product, Mode=TwoWay}"
+                  ItemsSource="{Binding Products, Mode=TwoWay}"
                   Height="350"
                   Margin="10,20,10,0"
                   VerticalAlignment="Top"
@@ -132,12 +132,13 @@
                 <DataGridTemplateColumn Header="Entrada">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="70"
+                            <Button x:Name="EntryButton"  Width="70"
                                     Height="25"
                                     HorizontalAlignment="Center"
                                     Background="#385A5E"
                                     BorderThickness="0"
                                     Content="Entrada"
+                                    Click="EntryButton_OnClick"
                                     FontSize="12"
                                     Foreground="#f2f2f2" />
                         </DataTemplate>
@@ -146,10 +147,11 @@
                 <DataGridTemplateColumn Header="Salida">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="70"
+                            <Button x:Name="OutputButton"  Width="70"
                                     Height="25"
                                     HorizontalAlignment="Center"
                                     Background="#385A5E"
+                                    Click="OutputButton_OnClick"
                                     BorderThickness="0"
                                     Content="Salida"
                                     FontSize="12"

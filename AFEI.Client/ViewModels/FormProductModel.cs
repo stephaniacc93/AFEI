@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using AFEI.Business;
 using AFEI.Models;
 
 namespace AFEI.Client.ViewModels
@@ -13,6 +14,9 @@ namespace AFEI.Client.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private Product _product;
+        private List<Provider> _providers; 
+        ProviderBusiness providerBusiness = new ProviderBusiness();
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -25,6 +29,16 @@ namespace AFEI.Client.ViewModels
             set
             {
                 _product = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Provider> Providers
+        {
+            get { return providerBusiness.GetList(); }
+            set
+            {
+                _providers = value;
                 OnPropertyChanged();
             }
         }

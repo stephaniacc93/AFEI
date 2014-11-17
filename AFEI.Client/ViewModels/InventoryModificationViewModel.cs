@@ -9,28 +9,17 @@ using AFEI.Models;
 
 namespace AFEI.Client.ViewModels
 {
-    public class ClientModel :INotifyPropertyChanged
+    public class InventoryModificationViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private List<Models.Client> _clients;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public List<Models.Client> Clients
-        {
-            get { return _clients; }
-            set
-            {
-                _clients = value;
-                OnPropertyChanged();
-            }
-        }
+        public Product Product { get; set; }
+        public int QuantityModification { get; set; }
 
-        public ClientModel()
-        {
-        }
     }
 }

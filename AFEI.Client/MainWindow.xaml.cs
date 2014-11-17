@@ -1,6 +1,7 @@
 ﻿using AFEI.Client.Views;
 using MahApps.Metro.Controls;
 using System.Windows;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace AFEI.Client
 {
@@ -20,6 +21,8 @@ namespace AFEI.Client
         FormProduct formProduct = new FormProduct();
         FormProvider formProvider = new FormProvider();
         Notifications notifications = new Notifications();
+        InventoryEntry inventoryEntry = new InventoryEntry();
+        InventoryOutput inventoryOutput = new InventoryOutput();
 
         public MainWindow()
         {
@@ -29,8 +32,56 @@ namespace AFEI.Client
             formClient.AddClientClicked += FormClientFormClientClicked;
             formProduct.AddProductClicked += FormProductFormProductClicked;
             inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
             provider.AddProviderClicked += provider_AddProviderClicked;
             formProvider.AddProviderClicked += FormProviderFormProviderClicked;
+        }
+
+        void inventory_DeleteProductClicked()
+        {
+            inventory = new Inventory();
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
+            Content.Content = inventory;
+        }
+
+
+        void inventory_AddInventoryClicked(object o)
+        {
+            inventoryEntry = new InventoryEntry(o);
+            inventoryEntry.AddInventoryClicked += inventoryEntry_AddInventoryClicked;
+            Content.Content = inventoryEntry;
+        }
+
+        void inventoryEntry_AddInventoryClicked()
+        {
+            inventory = new Inventory();
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
+            Content.Content = inventory;
+        }
+
+        void inventory_OutputInventoryClicked(object o)
+        {
+            inventoryOutput = new InventoryOutput(o);
+            inventoryOutput.OutputInventoryClicked += inventoryOutput_OutputInventoryClicked;
+            Content.Content = inventoryOutput;
+        }
+
+        void inventoryOutput_OutputInventoryClicked()
+        {
+            inventory = new Inventory();
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
+            Content.Content = inventory;
         }
 
         void FormProviderFormProviderClicked()
@@ -44,13 +95,30 @@ namespace AFEI.Client
             Content.Content = formProvider;
         }
 
-        void inventory_AddProductClicked()
+        void inventory_AddProductClicked(object o)
         {
+            formProduct = new FormProduct(o);
+            formProduct.AddProductClicked += formProduct_AddProductClicked;
             Content.Content = formProduct;
+        }
+
+        void formProduct_AddProductClicked()
+        {
+            inventory = new Inventory();
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
+            Content.Content = inventory;
         }
 
         void FormProductFormProductClicked()
         {
+            inventory = new Inventory();
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
             Content.Content = inventory;
         }
 
@@ -81,6 +149,11 @@ namespace AFEI.Client
 
         private void InventoryButton_OnClick(object sender, RoutedEventArgs e)
         {
+            inventory = new Inventory();
+            inventory.AddProductClicked += inventory_AddProductClicked;
+            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
+            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
+            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
             Content.Content = inventory;
         }
 

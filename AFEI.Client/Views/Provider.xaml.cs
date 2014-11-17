@@ -13,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AFEI.Business;
 using AFEI.Client.Font;
+using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using Microsoft.Windows.Controls.Primitives;
@@ -25,19 +27,15 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class Provider : MetroContentControl
     {
+        private ProviderModel _providerModel;
+        ProviderBusiness providerBusiness = new ProviderBusiness();
+
         public Provider()
         {
+            _providerModel = new ProviderModel();
+            _providerModel.Providers = providerBusiness.GetList();
             InitializeComponent();
-            Models.Provider provider = new Models.Provider();
-            provider.Id = 1;
-            provider.FirstName = "Juan";
-            provider.LastName = "Perez";
-            provider.Phone = "3456789";
-            provider.Company = "Empresa";
-            provider.Email = "juan@perez.com";
-            List<Models.Provider> providers = new List<Models.Provider>();
-            providers.Add(provider);
-            ProviderDataGrid.ItemsSource = providers;
+            DataContext = _providerModel;
         }
 
         public delegate void AddProviderClickedHandler(object o);

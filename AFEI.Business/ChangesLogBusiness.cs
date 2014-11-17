@@ -1,4 +1,5 @@
 ﻿using AFEI.Data;
+using AFEI.Data.Repositories.NonGeneric;
 using AFEI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,33 +11,35 @@ namespace AFEI.Business
 {
     public class ChangesLogBusiness :IBusiness<ChangesLog>
     {
-        private UnitOfWork _unitOfWork = new UnitOfWork();
+
         public void Create(ChangesLog entity)
         {
-            _unitOfWork.ChangesLogRepository.Insert(entity);
-            _unitOfWork.CommitChanges();
+            ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+            changesLogPersistence.Create(entity);
         }
 
         public void Update(ChangesLog entity)
         {
-            _unitOfWork.ChangesLogRepository.Update(entity);
-            _unitOfWork.CommitChanges();
+            ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+            changesLogPersistence.Update(entity);
         }
 
         public ChangesLog Read(int id)
         {
-            return _unitOfWork.ChangesLogRepository.GetByID(id);
+            ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+            return changesLogPersistence.Read(id);
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.ChangesLogRepository.Delete(id);
-            _unitOfWork.CommitChanges();
+            ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+            changesLogPersistence.Delete(id);
         }
 
         public List<ChangesLog> GetList()
         {
-            return _unitOfWork.ChangesLogRepository.GetList();
+            ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+            return changesLogPersistence.GetList();
         }
     }
 }

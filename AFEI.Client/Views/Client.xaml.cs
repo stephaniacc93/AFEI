@@ -14,19 +14,13 @@ namespace AFEI.Client.Views
     public partial class Client : MetroContentControl
     {
         private ClientModel _viewModel;
-        private List<Models.Client> _clients;
+        ClientBusiness clientBusiness = new ClientBusiness();
+
         public Client()
         {
             InitializeComponent();
-        }
-
-        public Client(Object o)
-        {
-            InitializeComponent();
-            ClientBusiness clientBusiness = new ClientBusiness();
-            _clients = (List<AFEI.Models.Client>)o;
-            _clients = clientBusiness.GetList();
-            _viewModel = new ClientModel(_clients);
+            _viewModel = new ClientModel();
+            _viewModel.Clients = clientBusiness.GetList();
             DataContext = _viewModel;
         }
 

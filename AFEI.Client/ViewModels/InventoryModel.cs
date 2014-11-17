@@ -29,9 +29,8 @@ namespace AFEI.Client.ViewModels
             }
         }
 
-        public InventoryModel(List<Models.Product> products)
+        public InventoryModel()
         {
-            _products = products;
         }
     }
 }

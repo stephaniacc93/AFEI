@@ -10,33 +10,30 @@ namespace AFEI.Business
 {
     public class TransactionBusiness:IBusiness<Transaction>
     {
-        private UnitOfWork _unitOfWork = new UnitOfWork();
+        TransactionBusiness transactionBusiness = new TransactionBusiness();
         public void Create(Transaction entity)
         {
-            _unitOfWork.TransactionRepository.Insert(entity);
-            _unitOfWork.CommitChanges();
+            transactionBusiness.Create(entity);
         }
 
         public void Update(Transaction entity)
         {
-            _unitOfWork.TransactionRepository.Update(entity);
-            _unitOfWork.CommitChanges();
+            transactionBusiness.Update(entity);
         }
 
         public Transaction Read(int id)
         {
-            return _unitOfWork.TransactionRepository.GetByID(id);
+            return transactionBusiness.Read(id);
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.TransactionRepository.Delete(id);
-            _unitOfWork.CommitChanges();
+            transactionBusiness.Delete(id);
         }
 
         public List<Transaction> GetList()
         {
-            return _unitOfWork.TransactionRepository.GetList();
+            return transactionBusiness.GetList();
         }
     }
 }

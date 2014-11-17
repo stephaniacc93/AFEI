@@ -1,4 +1,5 @@
 ﻿using AFEI.Data;
+using AFEI.Data.Repositories;
 using AFEI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,33 +11,32 @@ namespace AFEI.Business
 {
     public class UserBusiness:IBusiness<User>
     {
-        private UnitOfWork _unitOfWork = new UnitOfWork();
+        private UserPersistence userPersistence = new UserPersistence();
+
         public void Create(User entity)
         {
-            _unitOfWork.UserRepository.Insert(entity);
-            _unitOfWork.CommitChanges();
+            userPersistence.Create(entity);
         }
 
         public void Update(User entity)
         {
-            _unitOfWork.UserRepository.Update(entity);
-            _unitOfWork.CommitChanges();
+            userPersistence.Update(entity);
         }
 
         public User Read(int id)
         {
-            return _unitOfWork.UserRepository.GetByID(id);
+            return userPersistence.Read(id);
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.UserRepository.Delete(id);
-            _unitOfWork.CommitChanges();
+            userPersistence.Delete(id);
         }
+
 
         public List<User> GetList()
         {
-            return _unitOfWork.UserRepository.GetList();
+            return userPersistence.GetList();
         }
     }
 }

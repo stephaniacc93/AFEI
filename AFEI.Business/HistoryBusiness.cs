@@ -1,4 +1,5 @@
 ﻿using AFEI.Data;
+using AFEI.Data.Repositories.NonGeneric;
 using AFEI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,33 +11,31 @@ namespace AFEI.Business
 {
     public class HistoryBusiness : IBusiness<History>
     {
-        private UnitOfWork _unitOfWork = new UnitOfWork();
+        HistoryPersistence historyPersistence = new HistoryPersistence();
+
         public void Create(History entity)
         {
-            _unitOfWork.HistoryRepository.Insert(entity);
-            _unitOfWork.CommitChanges();
+            historyPersistence.Create(entity);
         }
 
         public void Update(History entity)
         {
-            _unitOfWork.HistoryRepository.Update(entity);
-            _unitOfWork.CommitChanges();
+            historyPersistence.Update(entity);
         }
 
         public History Read(int id)
         {
-            return _unitOfWork.HistoryRepository.GetByID(id);
+            return historyPersistence.Read(id);
         }   
 
         public void Delete(int id)
         {
-            _unitOfWork.HistoryRepository.Delete(id);
-            _unitOfWork.CommitChanges();
+            historyPersistence.Delete(id);
         }
 
         public List<History> GetList()
         {
-            return _unitOfWork.HistoryRepository.GetList();
+            return historyPersistence.GetList();
         }
     }
 }

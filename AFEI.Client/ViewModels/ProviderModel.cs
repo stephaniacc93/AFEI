@@ -29,9 +29,8 @@ namespace AFEI.Client.ViewModels
             }
         }
 
-        public ProviderModel(List<Models.Provider> providers)
+        public ProviderModel()
         {
-            _providers = providers;
         }
     }
 }
