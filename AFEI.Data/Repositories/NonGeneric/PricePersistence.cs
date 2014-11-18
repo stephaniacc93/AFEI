@@ -9,6 +9,7 @@ namespace AFEI.Data.Repositories.NonGeneric
 {
     public class PricePersistence
     {
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
         ProductPersistence productPersistence = new ProductPersistence();
 
         public Price Create(Price entity)
@@ -21,6 +22,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.Prices.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Prices.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Nuevo Precio",
+                        Module = "Precio",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -68,6 +78,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Prices.Single(x => x.Id == entity.Id);
 
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion Precio",
+                        Module = "Precio",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -91,6 +110,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIentities.Prices.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion Precio",
+                        Module = "Precio",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

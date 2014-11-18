@@ -13,19 +13,19 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class ChangesHistory : MetroContentControl
     {
+
+        //ESTA ES PARA EL CHANGES LOG
+
         private ChangesHistoryModel _viewmodel;
         private List<Models.History> _changesHistory;
+        ChangesLogBusiness ChangesLogBusiness = new ChangesLogBusiness();
+
         public ChangesHistory()
         {
             InitializeComponent();
-        }
-        public ChangesHistory(Object o)
-        {
-            InitializeComponent();
-            HistoryBusiness historyBusiness = new HistoryBusiness();
-            _changesHistory = (List<AFEI.Models.History>)o;
-            _changesHistory = historyBusiness.GetList();
-            _viewmodel = new ChangesHistoryModel(_changesHistory);
+            List<Models.ChangesLog> changesLogs = ChangesLogBusiness.GetList();
+            _viewmodel = new ChangesHistoryModel();
+            _viewmodel.ChangesLogs = changesLogs;
             DataContext = _viewmodel;
         }
 

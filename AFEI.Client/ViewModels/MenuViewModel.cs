@@ -9,17 +9,30 @@ using AFEI.Models;
 
 namespace AFEI.Client.ViewModels
 {
-    class ProductHistoryModel:INotifyPropertyChanged
+    public class MenuViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private List<Models.History> histories;
+           public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public List<Models.History> Histories
+        private List<ChangesLog> changesLogs;
+
+        public List<ChangesLog> ChangesLogs
+        {
+            get { return changesLogs; }
+            set
+            {
+                changesLogs = value;
+                OnPropertyChanged();
+            }
+        } 
+        
+        private List<History> histories;
+
+        public List<History> Histories
         {
             get { return histories; }
             set
@@ -29,7 +42,7 @@ namespace AFEI.Client.ViewModels
             }
         }
 
-        public ProductHistoryModel()
+        public MenuViewModel()
         {
         }
     }

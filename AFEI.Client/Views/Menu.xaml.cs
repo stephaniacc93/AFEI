@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AFEI.Business;
+using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
 
 namespace AFEI.Client.Views
@@ -21,9 +23,16 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class Menu : MetroContentControl
     {
+        HistoryBusiness historyBusiness = new HistoryBusiness();
+        ChangesLogBusiness changesLogBusiness = new ChangesLogBusiness();
+        private MenuViewModel _viewModel;
         public Menu()
         {
             InitializeComponent();
+            _viewModel = new MenuViewModel();
+            _viewModel.Histories = historyBusiness.GetList().OrderBy(x => x.Date).Take(20).ToList();
+            _viewModel.ChangesLogs = changesLogBusiness.GetList().OrderBy(x => x.Date).Take(20).ToList();
+            DataContext = _viewModel;
         }
 
     }

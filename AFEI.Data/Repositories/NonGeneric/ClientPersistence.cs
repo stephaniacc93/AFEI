@@ -9,7 +9,9 @@ namespace AFEI.Data.Repositories.NonGeneric
 {
     public class ClientPersistence
     {
-        public Client Create(Client entity)
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+        
+       public Client Create(Client entity)
         {
             Client response;
             try
@@ -19,6 +21,16 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.Clients.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Clients.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date =  DateTime.Now,
+                        Description = "Nuevo Cliente",
+                        Module = "Client",
+                        User =  LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
+
                 }
             }
             catch (Exception e)
@@ -38,6 +50,7 @@ namespace AFEI.Data.Repositories.NonGeneric
                     response = AFEIEntities.Clients
                         .Include("Products")
                         .Single(x => x.Id == entityId);
+
                 }
             }
             catch (Exception e)
@@ -65,6 +78,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Clients.Single(x => x.Id == entity.Id);
 
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion Cliente",
+                        Module = "Client",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
+
                 }
             }
             catch (Exception e)
@@ -89,6 +111,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIentities.Clients.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion Cliente",
+                        Module = "Client",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

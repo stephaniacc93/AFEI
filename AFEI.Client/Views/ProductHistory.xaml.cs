@@ -14,19 +14,18 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class ProductHistory : MetroContentControl
     {
+
+        //AQUI SE DESPLEGAN LAS HISTORIES
+
         private ProductHistoryModel _viewModel;
-        private List<Models.Product> _clients;
+
         public ProductHistory()
         {
             InitializeComponent();
-        }
-        public ProductHistory(Object o)
-        {
-            InitializeComponent();
-            ProductBusiness clientBusiness = new ProductBusiness();
-            _clients = (List<AFEI.Models.Product>)o;
-            _clients = clientBusiness.GetList();
-            _viewModel = new ProductHistoryModel(_clients);
+            HistoryBusiness historyBusiness = new HistoryBusiness();
+            List<Models.History> histories = historyBusiness.GetList();
+            _viewModel = new ProductHistoryModel();
+            _viewModel.Histories = histories;
             DataContext = _viewModel;
         }
 

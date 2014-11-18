@@ -9,6 +9,8 @@ namespace AFEI.Data.Repositories.NonGeneric
 {
     public class ProviderPersistence
     {
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+        
         public Provider Create(Provider entity)
         {
             Provider response;
@@ -19,6 +21,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.Providers.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Providers.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Nuevo Proveedor",
+                        Module = "Proveedor",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -56,18 +67,23 @@ namespace AFEI.Data.Repositories.NonGeneric
                 using (var AFEIEntities = new AFEIEntities())
                 {
                     var stub = new Provider() { Id = entity.Id };
-                    stub.FirstName = entity.FirstName;
-                    stub.LastName = entity.LastName;
-                    stub.Phone = entity.Phone;
-                    stub.Company = entity.Company;
-                    stub.Email = entity.Email;
+                    AFEIEntities.Providers.Attach(stub);
+                    AFEIEntities.Providers.ApplyCurrentValues(entity);
                     AFEIEntities.SaveChanges();
 
-                    var phase = AFEIEntities.Transactions .Include("Histories").Include("Products");
+                    var phase = AFEIEntities.Providers.Include("Histories").Include("Products");
 
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Providers.Single(x => x.Id == entity.Id);
 
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion Proveedor",
+                        Module = "Proveedor",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -91,6 +107,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIentities.Providers.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion Proveedor",
+                        Module = "Proveedor",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

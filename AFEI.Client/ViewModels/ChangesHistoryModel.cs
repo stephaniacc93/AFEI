@@ -12,26 +12,25 @@ namespace AFEI.Client.ViewModels
     public class ChangesHistoryModel :INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private List<History> _changesHistory;
+        private List<ChangesLog> changesLogs;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public List<History> ChangesHistory
+        public List<ChangesLog> ChangesLogs
         {
-            get { return _changesHistory; }
+            get { return changesLogs; }
             set
             {
-                _changesHistory = value;
+                changesLogs = value;
                 OnPropertyChanged();
             }
         }
 
-        public ChangesHistoryModel(List<History> changesHistory)
+        public ChangesHistoryModel()
         {
-            _changesHistory = changesHistory;   
         }
     }
 }

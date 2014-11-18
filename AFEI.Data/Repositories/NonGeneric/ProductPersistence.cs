@@ -9,6 +9,8 @@ namespace AFEI.Data.Repositories.NonGeneric
 {
     public class ProductPersistence
     {
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+        
         public Product Create(Product entity)
         {
             Product response;
@@ -20,6 +22,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.Products.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Products.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Nuevo Producto",
+                        Module = "Producto",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -57,16 +68,24 @@ namespace AFEI.Data.Repositories.NonGeneric
                 using (var AFEIEntities = new AFEIEntities())
                 {
                     var stub = new Product() { Id = entity.Id };
-                    stub.Provider = entity.Provider;
-                    stub.Name = entity.Name;
-                    stub.Quantity = entity.Quantity;
-                    stub.Description = entity.Description;
+                    AFEIEntities.Products.Attach(stub);
+                    AFEIEntities.Products.ApplyCurrentValues(entity);
                     AFEIEntities.SaveChanges();
 
                     var phase = AFEIEntities.Providers.Include("Provider");
 
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Products.Single(x => x.Id == entity.Id);
+
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion Producto",
+                        Module = "Producto",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }
@@ -91,6 +110,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIentities.Products.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion Producto",
+                        Module = "Producto",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

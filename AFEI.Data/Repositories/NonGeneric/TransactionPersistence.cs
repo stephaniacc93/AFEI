@@ -9,6 +9,8 @@ namespace AFEI.Data.Repositories.NonGeneric
 {
     public class TransactionPersistence
     {
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+        
         public Transaction Create(Transaction entity)
         {
             Transaction response;
@@ -20,6 +22,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.Transactions.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Transactions.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Nueva Transaccion",
+                        Module = "Transaccion",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -68,6 +79,14 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Transactions.Single(x => x.Id == entity.Id);
 
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion Transaccion",
+                        Module = "Transaccion",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -91,6 +110,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIentities.Transactions.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion Transaccion",
+                        Module = "Transaccion",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

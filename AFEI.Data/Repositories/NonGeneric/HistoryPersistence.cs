@@ -9,7 +9,8 @@ namespace AFEI.Data.Repositories.NonGeneric
 {
     public class HistoryPersistence
     {
-
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+        
         public History Create(History entity)
         {
             History response;
@@ -24,6 +25,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.Histories.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Histories.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Nuevo History",
+                        Module = "History",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -77,6 +87,14 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Histories.Single(x => x.Id == entity.Id);
 
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion History",
+                        Module = "History",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -101,6 +119,15 @@ namespace AFEI.Data.Repositories.NonGeneric
                     AFEIentities.Histories.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion History",
+                        Module = "History",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

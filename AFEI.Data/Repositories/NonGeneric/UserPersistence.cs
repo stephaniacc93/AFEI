@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AFEI.Data.Repositories.NonGeneric;
 using AFEI.Models;
 
 namespace AFEI.Data.Repositories
 {
     public class UserPersistence
     {
+        ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
+        
+
         public User Create(User entity)
         {
             User response;
@@ -19,6 +23,15 @@ namespace AFEI.Data.Repositories
                     AFEIEntities.Users.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Users.Single(x => x.Id == entity.Id);
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Nuevo Usuario",
+                        Module = "Usuario",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -70,6 +83,14 @@ namespace AFEI.Data.Repositories
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Users.Single(x => x.Id == entity.Id);
 
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion Usuario",
+                        Module = "Usuario",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
                 }
             }
             catch (Exception e)
@@ -93,6 +114,15 @@ namespace AFEI.Data.Repositories
                     AFEIentities.Users.DeleteObject(documentTypeToDelete);
                     AFEIentities.SaveChanges();
                     response = entityId;
+
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Eliminacion Usuario",
+                        Module = "Usuario",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogPersistence.Create(changesLog);
 
                 }
             }

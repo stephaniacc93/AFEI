@@ -12,15 +12,15 @@ namespace AFEI.Client.Views
     {
         private FormProviderModel _viewModel;
         private Models.Provider _provider;
+        ProviderBusiness providerBusiness = new ProviderBusiness();
 
         public FormProvider()
         {
-                
+            InitializeComponent();  
         }
         public FormProvider(object o)
         {
             InitializeComponent();
-            ProviderBusiness providerBusiness = new ProviderBusiness();
             _provider = (AFEI.Models.Provider)o;
             if (_provider.Id != 0)
                 _provider = providerBusiness.Read(_provider.Id);
@@ -40,6 +40,10 @@ namespace AFEI.Client.Views
 
         private void AddProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (_viewModel.Provider.Id != 0)
+                providerBusiness.Update(_viewModel.Provider);
+            else
+                providerBusiness.Create(_viewModel.Provider);
             OnAddProviderClicked();
         }
     }

@@ -7,7 +7,7 @@ namespace AFEI.Client
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /// </summary>                                 
     public partial class MainWindow : MetroWindow
     {
         Views.Menu menu = new Views.Menu();
@@ -28,18 +28,14 @@ namespace AFEI.Client
         {
             InitializeComponent();
             Content.Content = menu;
-            client.AddClientClicked += client_AddClientClicked;
-            client.DeleteClientClicked += client_DeleteClientClicked;
-            formProduct.AddProductClicked += FormProductFormProductClicked;
-            inventory.AddProductClicked += inventory_AddProductClicked;
-            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
-            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
-            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
-            provider.AddProviderClicked += provider_AddProviderClicked;
-            formProvider.AddProviderClicked += FormProviderFormProviderClicked;
         }
 
         void client_DeleteClientClicked()
+        {
+            GoToClient();
+        }
+
+        private void GoToClient()
         {
             client = new Views.Client();
             client.AddClientClicked += client_AddClientClicked;
@@ -49,16 +45,16 @@ namespace AFEI.Client
 
         void inventory_DeleteProductClicked()
         {
-            inventory = new Inventory();
-            inventory.AddProductClicked += inventory_AddProductClicked;
-            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
-            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
-            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
-            Content.Content = inventory;
+            GoToInventory();
         }
 
 
         void inventory_AddInventoryClicked(object o)
+        {
+            GoToInventoryEntry(o);
+        }
+
+        private void GoToInventoryEntry(object o)
         {
             inventoryEntry = new InventoryEntry(o);
             inventoryEntry.AddInventoryClicked += inventoryEntry_AddInventoryClicked;
@@ -67,15 +63,15 @@ namespace AFEI.Client
 
         void inventoryEntry_AddInventoryClicked()
         {
-            inventory = new Inventory();
-            inventory.AddProductClicked += inventory_AddProductClicked;
-            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
-            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
-            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
-            Content.Content = inventory;
+            GoToInventory();
         }
 
         void inventory_OutputInventoryClicked(object o)
+        {
+            GoToInventoryOutput(o);
+        }
+
+        private void GoToInventoryOutput(object o)
         {
             inventoryOutput = new InventoryOutput(o);
             inventoryOutput.OutputInventoryClicked += inventoryOutput_OutputInventoryClicked;
@@ -84,6 +80,35 @@ namespace AFEI.Client
 
         void inventoryOutput_OutputInventoryClicked()
         {
+            GoToInventory();
+        }
+
+        void provider_AddProviderClicked(object o)
+        {
+            GoToFormProvider(o);
+        }
+
+        private void GoToFormProvider(object o)
+        {
+            formProvider = new FormProvider(o);
+            formProvider.AddProviderClicked += formProvider_AddProviderClicked;
+            Content.Content = formProvider;
+        }
+
+        void formProvider_AddProviderClicked()
+        {
+            GoToProvider();
+        }
+
+        private void GoToProvider()
+        {
+            provider = new Provider();
+            provider.AddProviderClicked += provider_AddProviderClicked;
+            Content.Content = provider;
+        }
+
+        private void GoToInventory()
+        {
             inventory = new Inventory();
             inventory.AddProductClicked += inventory_AddProductClicked;
             inventory.AddInventoryClicked += inventory_AddInventoryClicked;
@@ -92,18 +117,12 @@ namespace AFEI.Client
             Content.Content = inventory;
         }
 
-        void FormProviderFormProviderClicked()
-        {
-            Content.Content = provider;
-        }
-
-        void provider_AddProviderClicked(object o)
-        {
-            formProvider = new FormProvider(o);
-            Content.Content = formProvider;
-        }
-
         void inventory_AddProductClicked(object o)
+        {
+            GoToFormProduct(o);
+        }
+
+        private void GoToFormProduct(object o)
         {
             formProduct = new FormProduct(o);
             formProduct.AddProductClicked += formProduct_AddProductClicked;
@@ -112,26 +131,17 @@ namespace AFEI.Client
 
         void formProduct_AddProductClicked()
         {
-            inventory = new Inventory();
-            inventory.AddProductClicked += inventory_AddProductClicked;
-            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
-            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
-            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
-            Content.Content = inventory;
+            GoToInventory();
         }
 
-        void FormProductFormProductClicked()
-        {
-            inventory = new Inventory();
-            inventory.AddProductClicked += inventory_AddProductClicked;
-            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
-            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
-            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
-            Content.Content = inventory;
-        }
 
 
         void client_AddClientClicked(object o)
+        {
+            GoToFormClient(o);
+        }
+
+        private void GoToFormClient(object o)
         {
             formClient = new FormClient(o);
             formClient.AddClientClicked += formClient_AddClientClicked;
@@ -140,10 +150,7 @@ namespace AFEI.Client
 
         void formClient_AddClientClicked()
         {
-            client = new Views.Client();
-            client.AddClientClicked += client_AddClientClicked;
-            client.DeleteClientClicked += client_DeleteClientClicked;
-            Content.Content = client;
+            GoToClient();
         }
 
         private void HomeButton_OnClick(object sender, RoutedEventArgs e)
@@ -153,22 +160,17 @@ namespace AFEI.Client
 
         private void ProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Content.Content = provider;
+            GoToProvider();
         }
 
         private void ClientButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Content.Content = client;
+           GoToClient();
         }
 
         private void InventoryButton_OnClick(object sender, RoutedEventArgs e)
         {
-            inventory = new Inventory();
-            inventory.AddProductClicked += inventory_AddProductClicked;
-            inventory.AddInventoryClicked += inventory_AddInventoryClicked;
-            inventory.OutputInventoryClicked += inventory_OutputInventoryClicked;
-            inventory.DeleteProductClicked += inventory_DeleteProductClicked;
-            Content.Content = inventory;
+            GoToInventory();
         }
 
         private void HistoryButton_OnClick(object sender, RoutedEventArgs e)

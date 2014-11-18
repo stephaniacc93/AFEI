@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\InventoryModel.cs" />
     <Compile Include="ViewModels\InventoryModificationViewModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ProductHistoryModel.cs" />
     <Compile Include="ViewModels\ProviderModel.cs" />
     <Compile Include="Views\FormClient.xaml.cs">
