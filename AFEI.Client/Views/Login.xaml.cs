@@ -29,15 +29,26 @@ namespace AFEI.Client.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            Notification.Text = "";
             string username = UserTextBox.Text;
             string password = PasswordTextBox.Password;
             if (isUserValid(username, password))
             {
-                //go to main page
+                OnLoggedInClicked();
             }
             else
             {
-                //do nothing (method isUserValid returns message error
+                Notification.Text = "Usuario o contrasena incorrecta";
+            }
+        }
+
+        public delegate void LoggedInClickedHandler();
+        public event LoggedInClickedHandler LoggedInClicked;
+        public void OnLoggedInClicked()
+        {
+            if (LoggedInClicked != null)
+            {
+                LoggedInClicked();
             }
         }
 
@@ -54,7 +65,10 @@ namespace AFEI.Client.Views
                 if (user.Password == password)
                     isPasswordCorrect = true;
                 if (isUsernameCorrect && isPasswordCorrect)
+                {
+                    LogInfo.LoggedUser = users.Single(x => x.Username == username && x.Password == password);
                     return true;
+                }
             }
             return false;
         }

@@ -30,8 +30,8 @@ namespace AFEI.Client.Views
         {
             InitializeComponent();
             _viewModel = new MenuViewModel();
-            _viewModel.Histories = historyBusiness.GetList().OrderBy(x => x.Date).Take(20).ToList();
-            _viewModel.ChangesLogs = changesLogBusiness.GetList().OrderBy(x => x.Date).Take(20).ToList();
+            _viewModel.Histories = historyBusiness.GetList().OrderByDescending(x => x.Date).Take(10).ToList();
+            _viewModel.ChangesLogs = changesLogBusiness.GetList().OrderByDescending(x => x.Date).Take(10).ToList();
             DataContext = _viewModel;
         }
 

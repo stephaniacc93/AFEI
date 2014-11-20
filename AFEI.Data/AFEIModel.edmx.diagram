@@ -5,24 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d6d33ea2182148afacb8b638594f0789" Name="Diagram1">
-        <EntityTypeShape EntityType="AFEIModel.ChangesLog" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.Client" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.History" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.Price" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.Product" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.Provider" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.Transaction" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AFEIModel.User" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="AFEIModel.FK_ChangesLog_User" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.FK_History_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.FK_History_Provider" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.FK_History_Transaction" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.FK_History_User" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.FK_Product_Provider" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.FK_Transaction_User" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.ProductClient" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.ProductPrice" ManuallyRouted="false" />
-        <AssociationConnector Association="AFEIModel.TransactionProduct" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AFEIModel.ChangesLog" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="AFEIModel.Client" Width="1.5" PointX="3.75" PointY="7.25" />
+        <EntityTypeShape EntityType="AFEIModel.History" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="AFEIModel.Price" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AFEIModel.Product" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="AFEIModel.Provider" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AFEIModel.User" Width="1.5" PointX="0.75" PointY="8.375" />
+        <AssociationConnector Association="AFEIModel.FK_ChangesLog_User" />
+        <AssociationConnector Association="AFEIModel.FK_History_Product" />
+        <AssociationConnector Association="AFEIModel.FK_History_Provider" />
+        <AssociationConnector Association="AFEIModel.FK_History_User" />
+        <AssociationConnector Association="AFEIModel.FK_Product_Provider" />
+        <AssociationConnector Association="AFEIModel.ProductClient" />
+        <AssociationConnector Association="AFEIModel.ProductPrice" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

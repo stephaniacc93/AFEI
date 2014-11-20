@@ -85,12 +85,13 @@
         </StackPanel>
         <DataGrid x:Name="ProductHistoryDataGrid"
                   Grid.Row="1"
-                  Grid.RowSpan="4"
+                  Grid.RowSpan="5"
                   Grid.ColumnSpan="4"
                   ItemsSource="{Binding Histories, Mode=TwoWay}"
-                  Height="350"
+                  Height="450"
                   Margin="10,20,10,0"
                   VerticalAlignment="Top"
+                  ColumnWidth="*"
                   HorizontalContentAlignment="Center"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
@@ -100,41 +101,46 @@
                   CanUserResizeRows="False"
                   Style="{StaticResource AzureDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Width=".8*"
-                                    Binding="{Binding Date}"
+                <DataGridTextColumn
+                                    Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Fecha" />
-                <DataGridTextColumn Width="1.090*"
-                                    Binding="{Binding Transaction.Type}"
+                <DataGridTextColumn  
+                                    Binding="{Binding TransactionType}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Header="Tipo de Transaccion" />
-                <DataGridTextColumn Width=".7*"
+                                    Header="Tipo" />
+                <DataGridTextColumn 
                                     Binding="{Binding Product.Name}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Producto" />
-                <DataGridTextColumn Width=".7*"
+                <DataGridTextColumn 
                                     Binding="{Binding Provider.Company}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Proveedor" />
-                <DataGridTextColumn Width=".7*"
-                                    Binding="{Binding Balance}"
+                <DataGridTextColumn 
+                                    Binding="{Binding Quantity}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Header="Balance" />
-                <DataGridTextColumn Width="2*"
-                                    Binding="{Binding Justificaction}"
+                                    Header="#  Productos" />
+                <DataGridTextColumn 
+                                    Binding="{Binding TransactionAmount, StringFormat={}{0:C}}"
+                                    CanUserSort="False"
+                                    ClipboardContentBinding="{x:Null}"
+                                    Header="Transaccion" />
+                <DataGridTextColumn 
+                                    Binding="{Binding Justification}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Justificacion" />
-                <DataGridTextColumn Width="1.3*"
+                <DataGridTextColumn 
                                     Binding="{Binding User.Firstname}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Header="Responsable del Cambio" />
+                                    Header="Responsable" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

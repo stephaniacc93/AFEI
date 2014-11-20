@@ -121,7 +121,7 @@
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Producto" />
-                <DataGridTextColumn Binding="{Binding Provider}"
+                <DataGridTextColumn Binding="{Binding Provider.Company}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Proveedor" />

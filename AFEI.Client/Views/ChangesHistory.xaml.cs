@@ -1,4 +1,5 @@
-﻿using AFEI.Business;
+﻿using System.Linq;
+using AFEI.Business;
 using AFEI.Client.Font;
 using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
@@ -23,7 +24,7 @@ namespace AFEI.Client.Views
         public ChangesHistory()
         {
             InitializeComponent();
-            List<Models.ChangesLog> changesLogs = ChangesLogBusiness.GetList();
+            List<Models.ChangesLog> changesLogs = ChangesLogBusiness.GetList().OrderByDescending(x=>x.Date).ToList();
             _viewmodel = new ChangesHistoryModel();
             _viewmodel.ChangesLogs = changesLogs;
             DataContext = _viewmodel;

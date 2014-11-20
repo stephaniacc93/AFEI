@@ -19,7 +19,8 @@ namespace AFEI.Client.ViewModels
         }
 
         public Product Product { get; set; }
-        public int QuantityModification { get; set; }
+        public History History { get; set; }
+
 
     }
 }

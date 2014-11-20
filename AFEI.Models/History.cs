@@ -11,18 +11,18 @@ namespace AFEI.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class History
     {
         public int Id { get; set; }
         public float TransactionAmount { get; set; }
         public System.DateTime Date { get; set; }
-        public float Balance { get; set; }
+        public int Quantity { get; set; }
         public string Justification { get; set; }
+        public string TransactionType { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Provider Provider { get; set; }
-        public virtual Transaction Transaction { get; set; }
         public virtual User User { get; set; }
     }
 }

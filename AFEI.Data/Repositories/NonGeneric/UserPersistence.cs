@@ -140,7 +140,7 @@ namespace AFEI.Data.Repositories
             {
                 using (var AFEIentities = new AFEIEntities())
                 {
-                    response = AFEIentities.Users.Include("ChangesLogs").Include("Histories").Include("Transactions").ToList();
+                    response = AFEIentities.Users.Include("ChangesLogs").Include("Histories").ToList();
                 }
             }
             catch (Exception e)

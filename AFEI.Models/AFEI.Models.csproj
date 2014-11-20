@@ -71,9 +71,6 @@
     <Compile Include="Provider.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Transaction.cs">
-      <DependentUpon>AFEIModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>AFEIModel.tt</DependentUpon>
     </Compile>

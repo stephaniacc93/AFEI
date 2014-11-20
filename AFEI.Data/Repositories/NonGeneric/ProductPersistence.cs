@@ -78,14 +78,6 @@ namespace AFEI.Data.Repositories.NonGeneric
                     response = AFEIEntities.Products.Single(x => x.Id == entity.Id);
 
 
-                    ChangesLog changesLog = new ChangesLog()
-                    {
-                        Date = DateTime.Now,
-                        Description = "Actualizacion Producto",
-                        Module = "Producto",
-                        User = LogInfo.LoggedUser
-                    };
-                    changesLogPersistence.Create(changesLog);
 
                 }
             }
@@ -136,7 +128,7 @@ namespace AFEI.Data.Repositories.NonGeneric
             {
                 using (var AFEIentities = new AFEIEntities())
                 {
-                    response = AFEIentities.Products.ToList();
+                    response = AFEIentities.Products.Include("Provider").ToList();
                 }
             }
             catch (Exception e)

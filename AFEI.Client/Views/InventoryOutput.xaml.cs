@@ -27,6 +27,8 @@ namespace AFEI.Client.Views
         private InventoryModificationViewModel _viewModel;
         ProviderBusiness providerBusiness = new ProviderBusiness();
         ProductBusiness productBusiness = new ProductBusiness();
+        ChangesLogBusiness changesLogBusiness = new ChangesLogBusiness();
+        HistoryBusiness historyBusiness = new HistoryBusiness();
 
         public InventoryOutput(object o)
         {
@@ -34,30 +36,44 @@ namespace AFEI.Client.Views
             Product p = (Product)o;
             _viewModel = new InventoryModificationViewModel();
             _viewModel.Product = p;
+            _viewModel.History = new History();
             DataContext = _viewModel;
         }
 
         public InventoryOutput()
         {
-                
+
         }
 
         private void OutputProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.QuantityModification >= 0 && _viewModel.QuantityModification < _viewModel.Product.Quantity)
+            if (_viewModel.History.Quantity >= 0 && _viewModel.History.Quantity <= _viewModel.Product.Quantity)
             {
-                _viewModel.Product.Quantity -= _viewModel.QuantityModification;
+                _viewModel.Product.Quantity -= _viewModel.History.Quantity;
                 productBusiness.Update(_viewModel.Product);
+                _viewModel.History.Product = _viewModel.Product;
+                _viewModel.History.Provider = _viewModel.Product.Provider;
+                _viewModel.History.User = LogInfo.LoggedUser;
+                _viewModel.History.TransactionType = "Reduccion de Inventario";
+                ChangesLog changesLog = new ChangesLog()
+                {
+                    Date = DateTime.Now,
+                    Description = "Baja de Inventario",
+                    Module = "Producto",
+                    User = LogInfo.LoggedUser
+                };
+                changesLogBusiness.Create(changesLog);
+                historyBusiness.Create(_viewModel.History);
                 OnOutputInventoryClicked();
             }
             else
             {
-               //falta validacion
+                //falta validacion
             }
         }
 
-         public delegate void OutputInventoryClickedHandler();
-         public event OutputInventoryClickedHandler OutputInventoryClicked;
+        public delegate void OutputInventoryClickedHandler();
+        public event OutputInventoryClickedHandler OutputInventoryClicked;
         public void OnOutputInventoryClicked()
         {
             if (OutputInventoryClicked != null)

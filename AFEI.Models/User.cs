@@ -18,7 +18,6 @@ namespace AFEI.Models
         {
             this.ChangesLogs = new HashSet<ChangesLog>();
             this.Histories = new HashSet<History>();
-            this.Transactions = new HashSet<Transaction>();
         }
     
         public int Id { get; set; }
@@ -30,6 +29,5 @@ namespace AFEI.Models
     
         public virtual ICollection<ChangesLog> ChangesLogs { get; set; }
         public virtual ICollection<History> Histories { get; set; }
-        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

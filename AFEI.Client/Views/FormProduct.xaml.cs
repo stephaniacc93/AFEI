@@ -1,5 +1,7 @@
-﻿using AFEI.Business;
+﻿using System;
+using AFEI.Business;
 using AFEI.Client.ViewModels;
+using AFEI.Models;
 using MahApps.Metro.Controls;
 using System.Windows;
 
@@ -13,6 +15,7 @@ namespace AFEI.Client.Views
         private FormProductModel _viewModel;
         private Models.Product _product;
         ProductBusiness productBusiness = new ProductBusiness();
+        ChangesLogBusiness changesLogBusiness = new ChangesLogBusiness();
 
         public FormProduct()
         {
@@ -41,10 +44,30 @@ namespace AFEI.Client.Views
 
         private void AddProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if(_viewModel.Product.Id !=0)
-              productBusiness.Update(_viewModel.Product);
+            if (_viewModel.Product.Id != 0)
+            {
+                productBusiness.Update(_viewModel.Product);
+                ChangesLog changesLog = new ChangesLog()
+                {
+                    Date = DateTime.Now,
+                    Description = "Actualizacion de Producto",
+                    Module = "Producto",
+                    User = LogInfo.LoggedUser
+                };
+                changesLogBusiness.Create(changesLog);
+            }
             else
+            {
                 productBusiness.Create(_viewModel.Product);
+                ChangesLog changesLog = new ChangesLog()
+                {
+                    Date = DateTime.Now,
+                    Description = "Creacion de nuevo Producto",
+                    Module = "Producto",
+                    User = LogInfo.LoggedUser
+                };
+                changesLogBusiness.Create(changesLog);
+            }
             OnAddProductClicked();
         }
 

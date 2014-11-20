@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AFEI.Business;
 using AFEI.Client.Font;
 using AFEI.Client.ViewModels;
@@ -23,7 +24,7 @@ namespace AFEI.Client.Views
         {
             InitializeComponent();
             HistoryBusiness historyBusiness = new HistoryBusiness();
-            List<Models.History> histories = historyBusiness.GetList();
+            List<Models.History> histories = historyBusiness.GetList().OrderByDescending(x=>x.Date).ToList();
             _viewModel = new ProductHistoryModel();
             _viewModel.Histories = histories;
             DataContext = _viewModel;

@@ -33,6 +33,7 @@
                    FontFamily="Segoe UI Light"
                    FontSize="20"
                    Text="Clientes" />
+
         <StackPanel Grid.Row="0"
                     Grid.Column="2"
                     Grid.ColumnSpan="2"
@@ -92,6 +93,7 @@
                                        Text="Search..." />
                         </xctk:WatermarkTextBox.Watermark>
                     </xctk:WatermarkTextBox>
+
                 </Grid>
             </StackPanel>
         </StackPanel>
@@ -99,7 +101,6 @@
                   Grid.Row="1"
                   Grid.RowSpan="4"
                   Grid.ColumnSpan="4"
-                  ItemsSource="{Binding Clients, Mode=TwoWay}"
                   Height="350"
                   Margin="10,20,10,0"
                   VerticalAlignment="Top"
@@ -111,6 +112,8 @@
                   CanUserResizeColumns="False"
                   CanUserResizeRows="False"
                   ColumnWidth="*"
+                  ItemsSource="{Binding Clients,
+                                        Mode=TwoWay}"
                   Style="{StaticResource AzureDataGrid}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}"

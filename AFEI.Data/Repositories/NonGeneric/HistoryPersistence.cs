@@ -19,9 +19,9 @@ namespace AFEI.Data.Repositories.NonGeneric
                 using (var AFEIEntities = new AFEIEntities())
                 {
                     entity.User = AFEIEntities.Users.First(x => x.Id == entity.User.Id);
-                    entity.Transaction = AFEIEntities.Transactions.First(x => x.Id == entity.User.Id);
-                    entity.Provider = AFEIEntities.Providers.First(x => x.Id == entity.User.Id);
-                    entity.Product = AFEIEntities.Products.First(x => x.Id == entity.User.Id);
+                    entity.Provider = AFEIEntities.Providers.First(x => x.Id == entity.Provider.Id);
+                    entity.Product = AFEIEntities.Products.First(x => x.Id == entity.Product.Id);
+                    entity.Date = DateTime.Now;
                     AFEIEntities.Histories.AddObject(entity);
                     AFEIEntities.SaveChanges();
                     response = AFEIEntities.Histories.Single(x => x.Id == entity.Id);
@@ -73,11 +73,9 @@ namespace AFEI.Data.Repositories.NonGeneric
                     var stub = new History() { Id = entity.Id };
                     stub.TransactionAmount = entity.TransactionAmount;
                     stub.Date = entity.Date;
-                    stub.Balance = entity.Balance;
                     stub.Justification = entity.Justification;
                     stub.Product = entity.Product;
                     stub.Provider = entity.Provider;
-                    stub.Transaction = entity.Transaction;
                     stub.User = entity.User;
                     AFEIEntities.SaveChanges();
 
@@ -146,7 +144,7 @@ namespace AFEI.Data.Repositories.NonGeneric
                 using (var AFEIentities = new AFEIEntities())
                 {
                     response = AFEIentities.Histories
-                        .Include("Product").Include("Provider").Include("Transaction").Include("User").ToList();
+                        .Include("Product").Include("Provider").Include("User").ToList();
                 }
             }
             catch (Exception e)

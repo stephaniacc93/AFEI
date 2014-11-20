@@ -79,12 +79,6 @@ namespace AFEI.Data
         }
         private ObjectSet<Provider> _providers;
     
-        public ObjectSet<Transaction> Transactions
-        {
-            get { return _transactions  ?? (_transactions = CreateObjectSet<Transaction>("Transactions")); }
-        }
-        private ObjectSet<Transaction> _transactions;
-    
         public ObjectSet<User> Users
         {
             get { return _users  ?? (_users = CreateObjectSet<User>("Users")); }

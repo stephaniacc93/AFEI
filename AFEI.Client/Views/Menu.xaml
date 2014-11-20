@@ -5,10 +5,10 @@
                                xmlns:controls1="http://metro.mahapps.com/winfx/xaml/controls"
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                               d:DesignWidth="950"
-                               d:DesignHeight="700"
                                Width="Auto"
-                               Height="Auto"
+                               Height="1000"
+                               d:DesignHeight="700"
+                               d:DesignWidth="950"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -36,6 +36,7 @@
                    FontSize="30"
                    Foreground="DimGray"
                    Text="Bienvenido a AFEI" />
+
         <TextBlock Grid.Row="1"
                    Grid.ColumnSpan="4"
                    HorizontalAlignment="Center"
@@ -46,30 +47,31 @@
                   Grid.RowSpan="3"
                   Grid.ColumnSpan="4"
                   Margin="10,20,10,0"
-                  ItemsSource="{Binding ChangesLogs, Mode=TwoWay}"
                   HorizontalAlignment="Center"
-                  AutoGenerateColumns="True"
-                 
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  ItemsSource="{Binding ChangesLogs,
+                                        Mode=TwoWay}"
                   Style="{StaticResource AzureDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Date}"
+                <DataGridTextColumn Width=".6*"
+                                    Binding="{Binding Date}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Width=".6*"
                                     Header="Fecha" />
-                <DataGridTextColumn Binding="{Binding Module}"
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Module}"
                                     CanUserSort="False"
-                                    Width="*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Modulo" />
-                <DataGridTextColumn Binding="{Binding Description}"
+                <DataGridTextColumn Width="2*"
+                                    Binding="{Binding Description}"
                                     CanUserSort="False"
-                                    Width="2*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Descripcion" />
-                <DataGridTextColumn Binding="{Binding User.Firstname}"
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding User.Firstname}"
                                     CanUserSort="False"
-                                    Width="*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Responsable" />
             </DataGrid.Columns>
@@ -85,44 +87,46 @@
                   Grid.RowSpan="3"
                   Grid.ColumnSpan="4"
                   Margin="10,20,10,0"
-                   ItemsSource="{Binding Histories, Mode=TwoWay}"
                   HorizontalAlignment="Center"
-                  AutoGenerateColumns="True"
-                 
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  ItemsSource="{Binding Histories,
+                                        Mode=TwoWay}"
                   Style="{StaticResource AzureDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Date}"
+                <DataGridTextColumn Width=".6*"
+                                    Binding="{Binding Date}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Width=".6*"
                                     Header="Fecha" />
-                <DataGridTextColumn Binding="{Binding Transaction.Type}"
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Transaction.Type}"
                                     CanUserSort="False"
-                                    Width="*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Tipo de" />
-                <DataGridTextColumn Binding="{Binding Product.Name}"
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Product.Name}"
                                     CanUserSort="False"
-                                    Width="*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Producto" />
-                <DataGridTextColumn Binding="{Binding Provider.Company}"
+                <DataGridTextColumn Width=".7*"
+                                    Binding="{Binding Provider.Company}"
                                     CanUserSort="False"
-                                    Width=".7*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Proveedor" />
                 <DataGridTextColumn Binding="{Binding Balance}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Balance" />
-                <DataGridTextColumn Binding="{Binding Justificaction}"
+                <DataGridTextColumn Width="2*"
+                                    Binding="{Binding Justificaction}"
                                     CanUserSort="False"
                                     ClipboardContentBinding="{x:Null}"
-                                    Width="2*"
                                     Header="Justificacion" />
-                <DataGridTextColumn Binding="{Binding User.Firstname}"
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding User.Firstname}"
                                     CanUserSort="False"
-                                    Width="*"
                                     ClipboardContentBinding="{x:Null}"
                                     Header="Responsable" />
             </DataGrid.Columns>

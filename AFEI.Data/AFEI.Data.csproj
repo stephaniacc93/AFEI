@@ -70,7 +70,6 @@
     <Compile Include="Repositories\NonGeneric\PricePersistence.cs" />
     <Compile Include="Repositories\NonGeneric\ProductPersistence.cs" />
     <Compile Include="Repositories\NonGeneric\ProviderPersistence.cs" />
-    <Compile Include="Repositories\NonGeneric\TransactionPersistence.cs" />
     <Compile Include="Repositories\NonGeneric\UserPersistence.cs" />
   </ItemGroup>
   <ItemGroup>
