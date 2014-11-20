@@ -277,6 +277,17 @@ namespace AFEI.Client
 
         private void LogoutButton_OnClick(object sender, RoutedEventArgs e)
         {
+            UserTextBlock.Text = "";
+            NotificationsButton.Content = "";
+            LogInfo.LoggedUser = null;
+            UserStackPanel.Visibility = Visibility.Hidden;
+            LoginStackPanel.Visibility = Visibility.Visible;
+            ProviderButton.Visibility = Visibility.Hidden;
+            ClientButton.Visibility = Visibility.Hidden;
+            InventoryButton.Visibility = Visibility.Hidden;
+            HistoryButton.Visibility = Visibility.Hidden;
+            Content.Content = null;
+
         }
 
         private void UserButton_OnClick(object sender, RoutedEventArgs e)

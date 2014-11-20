@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AFEI.Models;
 
 namespace AFEI.Client.Views
 {
@@ -21,10 +22,13 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class Notification : UserControl
     {
-        public Notification(string notification)
+        public Product Product { get; set; }
+        public Notification(Product p)
         {
             InitializeComponent();
-            NotificationTextBlock.Text = notification;
+            Product = p;
+            DataContext = Product;
+            QuantityTextBlock.Text = p.Quantity.ToString();
         }
     }
 }

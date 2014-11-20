@@ -7,23 +7,68 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.Linq;
+
 namespace AFEI.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Client
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Client : IDataErrorInfo
     {
         public Client()
         {
             this.Products = new HashSet<Product>();
         }
-    
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
-    
+        public string error = "";
         public virtual ICollection<Product> Products { get; set; }
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "FirstName")
+                {
+                    if (string.IsNullOrEmpty(FirstName))
+                        result = "Favor ingresar un nombre para el cliente";
+                }
+                if (columnName == "LastName")
+                {
+                    if (string.IsNullOrEmpty(LastName))
+                        result = "Favor ingresar un apellido para el cliente";
+                }
+                if (columnName == "Phone")
+                {
+                    if (string.IsNullOrEmpty(Phone))
+                    {
+                            result = "Favor ingresar un telefono para el cliente";
+                    }
+                    else
+                    {
+                        if (Phone.Count() >= 7)
+                            result = "Favor ingresar un telefono valido";
+                    }
+                }
+                error = result;
+                return result;
+            }
+        }
+
+        #endregion
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AFEI.Business;
 using MahApps.Metro.Controls;
 
 namespace AFEI.Client.Views
@@ -20,10 +21,16 @@ namespace AFEI.Client.Views
     /// </summary>
     public partial class Notifications : MetroContentControl
     {
+        ProductBusiness productBusiness = new ProductBusiness();
+
         public Notifications()
         {
             InitializeComponent();
-            NotificationStack.Children.Add(new Notification("Falta arroz"));
+            var products = productBusiness.GetList().Where(x => x.Quantity < 10);
+            foreach (var product in products)
+            {
+                NotificationStack.Children.Add(new Notification(product));
+            }
         }
 
     }

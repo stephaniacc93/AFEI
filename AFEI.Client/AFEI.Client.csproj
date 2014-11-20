@@ -100,6 +100,7 @@
     </ApplicationDefinition>
     <Compile Include="Font\ExportToExcel.cs" />
     <Compile Include="Helpers\AutoCompleteFocusableBox.cs" />
+    <Compile Include="Helpers\DialogService.cs" />
     <Compile Include="ViewModels\ChangesHistoryModel.cs" />
     <Compile Include="ViewModels\ClientModel.cs" />
     <Compile Include="ViewModels\FormClientModel.cs" />
@@ -292,6 +293,9 @@
       <Project>{11778d31-a59b-4888-b605-9712635e35c2}</Project>
       <Name>AFEI.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bell.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

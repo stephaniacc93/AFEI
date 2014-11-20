@@ -13,6 +13,7 @@ namespace AFEI.Client.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private Models.Client _client;
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -33,5 +34,7 @@ namespace AFEI.Client.ViewModels
         {
             _client = client;   
         }
+
+
     }
 }

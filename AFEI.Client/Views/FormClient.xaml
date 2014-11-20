@@ -14,7 +14,7 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1.5*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -38,10 +38,21 @@
                    FontSize="27"
                    Text="Cliente" />
 
+        <TextBlock x:Name="Notification" Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Margin="15,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="Segoe UI Light"
+                   FontSize="15"
+                   Foreground="DarkRed"
+                   Text="" />
+
+
         <TextBlock Grid.Row="1"
                    Grid.Column="1"
+                   VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
                    FontFamily="Segoe UI Light"
                    FontSize="20"
                    Text="Nombre" />
@@ -50,39 +61,54 @@
                  Grid.Column="2"
                  Width="200"
                  Height="40"
+                 VerticalAlignment="Bottom"
                  FontFamily="Segoe UI Light"
-                 Text="{Binding Client.FirstName, Mode=TwoWay}"
-                 FontSize="20" />
+                 FontSize="20"
+                 Text="{Binding Client.FirstName,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Bottom"
                    FontFamily="Segoe UI Light"
                    FontSize="20"
                    Text="Apellido" />
-        <TextBlock Grid.Row="3"
-                   Grid.Column="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontFamily="Segoe UI Light"
-                   FontSize="20"
-                   Text="Telefono" />
         <TextBox x:Name="LastNameTextBox"
                  Grid.Row="2"
                  Grid.Column="2"
                  Width="200"
+                 VerticalAlignment="Bottom"
                  Height="40"
                  FontFamily="Segoe UI Light"
-                 Text="{Binding Client.LastName, Mode=TwoWay}"
-                 FontSize="20" />
+                 FontSize="20"
+                 Text="{Binding Client.LastName,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   FontFamily="Segoe UI Light"
+                   FontSize="20"
+                   VerticalAlignment="Bottom"
+                   Text="Telefono" />
         <TextBox x:Name="TelefonoTextBox"
                  Grid.Row="3"
                  Grid.Column="2"
                  Width="200"
                  Height="40"
+                 VerticalAlignment="Bottom"
                  FontFamily="Segoe UI Light"
-                 Text="{Binding Client.Phone, Mode=TwoWay}"
-                 FontSize="20" />
+                 FontSize="20"
+                 Text="{Binding Client.Phone,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <Button Grid.Row="5"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"

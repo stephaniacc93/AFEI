@@ -3,18 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="70"
+             d:DesignHeight="60"
              d:DesignWidth="1000"
+             Margin="0,0,0,10"
              mc:Ignorable="d">
     <Grid Background="White">
-        <Border Height="50" Background="#f2f2f2">
-            <TextBlock x:Name="NotificationTextBlock"
-                       Margin="50,0,0,0"
+        <Border Height="60" Background="#f2f2f2">
+            <StackPanel VerticalAlignment="Center" Margin="50,0,0,0" Orientation="Horizontal">
+
+                <Border   Margin="0,0,20,0"
+                Width="40"
+                Height="40"
+                Background="DarkRed"
+                BorderBrush="White"
+                BorderThickness="1"
+                CornerRadius="500,500,500,500">
+
+                    <Image Source="../Images/Bell.png" Width="25" Height="25"/>
+                </Border>
+                <TextBlock 
                        VerticalAlignment="Center"
                        FontFamily="Segoe UI Light"
                        FontSize="18"
-                       Text="Notificacion 1"
+                       Text="Se encuentra "
                        TextWrapping="Wrap" />
+                <TextBlock x:Name="QuantityTextBlock"
+                       VerticalAlignment="Center"
+                       FontFamily="Segoe UI Light"
+                       FontSize="18"
+                       TextWrapping="Wrap" />
+                <TextBlock 
+                       VerticalAlignment="Center"
+                       FontFamily="Segoe UI Light"
+                       FontSize="18"
+                       Text=" objetos de "
+                       TextWrapping="Wrap" />
+                <TextBlock x:Name="ProductTextBlock"
+                       VerticalAlignment="Center"
+                       FontFamily="Segoe UI Light"
+                       FontSize="18"
+                       Text="{Binding Name}"
+                       TextWrapping="Wrap" />
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

@@ -35,6 +35,8 @@ namespace AFEI.Client.Views
             if (isUserValid(username, password))
             {
                 OnLoggedInClicked();
+                UserTextBox.Text = "";
+                PasswordTextBox.Password = "";
             }
             else
             {

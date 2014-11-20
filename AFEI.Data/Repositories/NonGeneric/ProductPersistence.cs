@@ -70,15 +70,11 @@ namespace AFEI.Data.Repositories.NonGeneric
                     var stub = new Product() { Id = entity.Id };
                     AFEIEntities.Products.Attach(stub);
                     AFEIEntities.Products.ApplyCurrentValues(entity);
+                    stub.Quantity = entity.Quantity;
                     AFEIEntities.SaveChanges();
 
-                    var phase = AFEIEntities.Providers.Include("Provider");
 
-                    AFEIEntities.SaveChanges();
                     response = AFEIEntities.Products.Single(x => x.Id == entity.Id);
-
-
-
                 }
             }
             catch (Exception e)

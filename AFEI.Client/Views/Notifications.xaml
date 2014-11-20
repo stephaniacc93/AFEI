@@ -6,10 +6,10 @@
                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                               d:DesignWidth="1094"
-                               d:DesignHeight="569"
                                Width="Auto"
                                Height="Auto"
+                               d:DesignHeight="569"
+                               d:DesignWidth="1094"
                                mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -33,6 +33,11 @@
                    FontFamily="Segoe UI Light"
                    FontSize="20"
                    Text="Notificaciones" />
-        <StackPanel x:Name="NotificationStack" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4"/>
+
+        <StackPanel x:Name="NotificationStack"
+                    Grid.Row="1"
+                    Grid.RowSpan="4"
+                    Grid.ColumnSpan="4"
+                    Orientation="Vertical" />
     </Grid>
 </controls1:MetroContentControl>
