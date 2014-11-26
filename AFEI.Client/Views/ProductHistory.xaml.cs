@@ -48,7 +48,7 @@ namespace AFEI.Client.Views
         private bool Filters(object obj)
         {
             Models.History history = obj as Models.History;
-            if (history.TransactionType.ToLower().Contains(_Filter) || history.TransactionAmount.ToString().ToLower().Contains(_Filter) || history.Provider.Company.ToLower().Contains(_Filter))
+            if (history.TransactionType.ToLower().Contains(_Filter) || history.TransactionAmount.ToString().ToLower().Contains(_Filter) || history.Provider.Company.ToLower().Contains(_Filter) || history.Date.ToString("d").ToLower().Contains(_Filter))
                 return true;
             else
                 return false;

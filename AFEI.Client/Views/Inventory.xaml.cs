@@ -55,12 +55,6 @@ namespace AFEI.Client.Views
             OnAddProductClicked(new Product());
         }
 
-        private void DeleteProductButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var o = (Product)InventoryDataGrid.SelectedItem;
-            productBusiness.Delete(o.Id);
-            OnDeleteProductClicked();
-        }
 
         private void ExportToExcelButton_OnClick(object sender, RoutedEventArgs e)
         {

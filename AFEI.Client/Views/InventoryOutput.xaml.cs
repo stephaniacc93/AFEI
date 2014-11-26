@@ -47,9 +47,14 @@ namespace AFEI.Client.Views
 
         private void OutputProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.History.Quantity >= 0 && _viewModel.History.Quantity <= _viewModel.Product.Quantity)
+            if (string.IsNullOrWhiteSpace(_viewModel.History.error) && _viewModel.History.Quantity <= _viewModel.Product.Quantity)
             {
-                _viewModel.Product.Quantity -= _viewModel.History.Quantity;
+                if (_viewModel.History.Quantity == _viewModel.Product.Quantity)
+                {
+                    _viewModel.Product.Quantity = 0;
+                }
+                else
+                    _viewModel.Product.Quantity -= _viewModel.History.Quantity;
                 productBusiness.Update(_viewModel.Product);
                 _viewModel.History.Product = _viewModel.Product;
                 _viewModel.History.Provider = _viewModel.Product.Provider;
@@ -68,7 +73,8 @@ namespace AFEI.Client.Views
             }
             else
             {
-                //falta validacion
+                NtTextBlock.Text =
+                     "Los cambios no han sido registrados, favor de ingresar los datos correspondientes";
             }
         }
 

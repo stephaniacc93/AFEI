@@ -57,18 +57,20 @@ namespace AFEI.Client.Views
 
         private void EditProvider_OnClick(object sender, RoutedEventArgs e)
         {
-            Models.Provider  p = (Models.Provider)ProviderDataGrid.SelectedItem;
+            Models.Provider p = (Models.Provider)ProviderDataGrid.SelectedItem;
             OnAddProviderClicked(p);
         }
 
         private void DeleteProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Models.Provider p = (Models.Provider)ProviderDataGrid.SelectedItem;
+            providerBusiness.Delete(p.Id);
+            _providerModel.Providers = providerBusiness.GetList();
         }
 
         private void ExportToExcelButton_OnClick(object sender, RoutedEventArgs e)
         {
-           ExportToExcel.Export(ProviderDataGrid);
+            ExportToExcel.Export(ProviderDataGrid);
         }
 
         private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)

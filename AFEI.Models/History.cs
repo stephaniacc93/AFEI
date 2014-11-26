@@ -7,12 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace AFEI.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class History
+
+    public partial class History : IDataErrorInfo
     {
         public int Id { get; set; }
         public float TransactionAmount { get; set; }
@@ -20,9 +22,47 @@ namespace AFEI.Models
         public int Quantity { get; set; }
         public string Justification { get; set; }
         public string TransactionType { get; set; }
-    
+        public string error = "";
         public virtual Product Product { get; set; }
         public virtual Provider Provider { get; set; }
         public virtual User User { get; set; }
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "Quantity")
+                {
+                    if (Quantity == 0 || string.IsNullOrWhiteSpace(Quantity.ToString()))
+                        result = "Favor ingresar una cantidad correcta";
+                }
+                if (columnName == "TransactionAmount")
+                {
+                    if (TransactionAmount == 0 || string.IsNullOrWhiteSpace(TransactionAmount.ToString()))
+                        result = "Favor ingresar una cantidad correcta";
+                }
+
+                if (columnName == "Justification")
+                {
+                    if (string.IsNullOrWhiteSpace(Justification))
+                    {
+                        result = "Favor ingresar una justificacion";
+                    }
+                }
+
+                error = result;
+                return result;
+            }
+
+            #endregion
+        }
     }
 }

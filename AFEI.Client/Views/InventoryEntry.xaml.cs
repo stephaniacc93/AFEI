@@ -31,7 +31,7 @@ namespace AFEI.Client.Views
 
         public InventoryEntry()
         {
-                
+
         }
 
         public delegate void AddInventoryClickedHandler();
@@ -46,7 +46,7 @@ namespace AFEI.Client.Views
 
         private async void AddProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.History.Quantity >= 0)
+            if (string.IsNullOrWhiteSpace(_viewModel.History.error))
             {
                 _viewModel.Product.Quantity += _viewModel.History.Quantity;
                 productBusiness.Update(_viewModel.Product);
@@ -67,7 +67,8 @@ namespace AFEI.Client.Views
             }
             else
             {
-               //falta validacion
+                NtTextBlock.Text =
+                      "Los cambios no han sido registrados, favor de ingresar los datos correspondientes";
             }
 
         }

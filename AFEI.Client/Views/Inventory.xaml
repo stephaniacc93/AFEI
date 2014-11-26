@@ -89,8 +89,8 @@
                                            Padding="5">
                         <xctk:WatermarkTextBox.Watermark>
                             <TextBlock FontSize="15"
-                                       Foreground="WhiteSmoke"
-                                       Text="Search..." />
+                                       Foreground="Gray"
+                                       Text="Nombre | Empresa" />
                         </xctk:WatermarkTextBox.Watermark>
                     </xctk:WatermarkTextBox>
                 </Grid>
@@ -155,22 +155,6 @@
                                     Click="OutputButton_OnClick"
                                     BorderThickness="0"
                                     Content="Salida"
-                                    FontSize="12"
-                                    Foreground="#f2f2f2" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Eliminar">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="DeleteProductButton"
-                                    Width="70"
-                                    Height="25"
-                                    HorizontalAlignment="Center"
-                                    Background="#600000"
-                                    BorderThickness="0"
-                                    Click="DeleteProductButton_OnClick"
-                                    Content="Eliminar"
                                     FontSize="12"
                                     Foreground="#f2f2f2" />
                         </DataTemplate>

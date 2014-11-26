@@ -298,6 +298,7 @@ namespace AFEI.Client
 
         private void NotificationsButton_OnClick(object sender, RoutedEventArgs e)
         {
+            notifications = new Notifications();
             Content.Content = notifications;
             NotificationsButton.Content = productBusiness.GetList().Count(x => x.Quantity < 10);
         }

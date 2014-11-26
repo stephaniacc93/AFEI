@@ -55,7 +55,7 @@
                         Margin="0,0,10,0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                <Grid Width="180"
+                <Grid Width="270"
                       Height="30"
                       Background="#FF212121">
                     <Grid.ColumnDefinitions>
@@ -77,8 +77,8 @@
                                            Padding="5">
                         <xctk:WatermarkTextBox.Watermark>
                             <TextBlock FontSize="15"
-                                       Foreground="WhiteSmoke"
-                                       Text="Search..." />
+                                       Foreground="Gray"
+                                       Text="Fecha | Tipo | $ | Fecha | Empresa" />
                         </xctk:WatermarkTextBox.Watermark>
                     </xctk:WatermarkTextBox>
                 </Grid>
