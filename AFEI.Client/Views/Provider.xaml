@@ -80,6 +80,7 @@
                            Source="../Images/SearchIcon.png" />
                     <xctk:WatermarkTextBox x:Name="SearchTextBox"
                                            Grid.Column="1"
+                                           TextChanged="SearchTextBox_OnTextChanged"
                                            VerticalAlignment="Center"
                                            Background="Transparent"
                                            BorderThickness="0"

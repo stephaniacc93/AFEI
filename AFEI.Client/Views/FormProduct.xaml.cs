@@ -44,31 +44,41 @@ namespace AFEI.Client.Views
 
         private void AddProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.Product.Id != 0)
+
+            if (_viewModel.Product.Provider != null && string.IsNullOrWhiteSpace(_viewModel.Product.error))
             {
-                productBusiness.Update(_viewModel.Product);
-                ChangesLog changesLog = new ChangesLog()
+                Notification.Text = "";
+                if (_viewModel.Product.Id != 0)
                 {
-                    Date = DateTime.Now,
-                    Description = "Actualizacion de Producto",
-                    Module = "Producto",
-                    User = LogInfo.LoggedUser
-                };
-                changesLogBusiness.Create(changesLog);
+                    productBusiness.Update(_viewModel.Product);
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Actualizacion de Producto",
+                        Module = "Producto",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogBusiness.Create(changesLog);
+                }
+                else
+                {
+                    productBusiness.Create(_viewModel.Product);
+                    ChangesLog changesLog = new ChangesLog()
+                    {
+                        Date = DateTime.Now,
+                        Description = "Creacion de nuevo Producto",
+                        Module = "Producto",
+                        User = LogInfo.LoggedUser
+                    };
+                    changesLogBusiness.Create(changesLog);
+                }
+                OnAddProductClicked();
             }
             else
             {
-                productBusiness.Create(_viewModel.Product);
-                ChangesLog changesLog = new ChangesLog()
-                {
-                    Date = DateTime.Now,
-                    Description = "Creacion de nuevo Producto",
-                    Module = "Producto",
-                    User = LogInfo.LoggedUser
-                };
-                changesLogBusiness.Create(changesLog);
+                Notification.Text =
+                    "Producto no ha sido registrado, favor de ingresar los datos correspondientes";
             }
-            OnAddProductClicked();
         }
 
         private void ProviderTextBox_OnGotFocus(object sender, RoutedEventArgs e)

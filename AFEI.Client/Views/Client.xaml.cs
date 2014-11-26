@@ -1,4 +1,7 @@
-﻿using AFEI.Business;
+﻿using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Data;
+using AFEI.Business;
 using AFEI.Client.Font;
 using AFEI.Client.ViewModels;
 using MahApps.Metro.Controls;
@@ -15,6 +18,7 @@ namespace AFEI.Client.Views
     {
         private ClientModel _viewModel;
         ClientBusiness clientBusiness = new ClientBusiness();
+        private string _Filter;
 
         public Client()
         {
@@ -65,6 +69,23 @@ namespace AFEI.Client.Views
         private void ExportToExcelButton_OnClick(object sender, RoutedEventArgs e)
         {
             ExportToExcel.Export(ClientDataGrid);
+        }
+
+        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(ClientDataGrid.ItemsSource);
+            _Filter = SearchTextBox.Text.ToLower();
+            view.Filter = new Predicate<object>(Filters);
+        }
+
+        private bool Filters(object obj)
+        {
+            Models.Client client = obj as Models.Client;
+
+            if (client.FirstName.ToLower().Contains(_Filter) || client.LastName.ToLower().Contains(_Filter))
+                return true;
+            else
+                return false;
         }
     }
 }

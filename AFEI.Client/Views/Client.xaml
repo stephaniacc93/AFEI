@@ -86,6 +86,7 @@
                                            BorderThickness="0"
                                            FontSize="15"
                                            Foreground="White"
+                                           TextChanged="SearchTextBox_OnTextChanged"
                                            Padding="5">
                         <xctk:WatermarkTextBox.Watermark>
                             <TextBlock FontSize="15"

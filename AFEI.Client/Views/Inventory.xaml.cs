@@ -1,4 +1,7 @@
-﻿using AFEI.Business;
+﻿using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Data;
+using AFEI.Business;
 using AFEI.Client.Font;
 using AFEI.Client.ViewModels;
 using AFEI.Models;
@@ -17,6 +20,7 @@ namespace AFEI.Client.Views
         private InventoryModel _viewModel;
         ProductBusiness productBusiness = new ProductBusiness();
         ProviderBusiness providerBusiness= new ProviderBusiness();
+        private string _Filter;
 
         public Inventory()
         {
@@ -95,6 +99,22 @@ namespace AFEI.Client.Views
             var o = (Product)InventoryDataGrid.SelectedItem;
             Product p = productBusiness.Read(o.Id);
             OnOutputInventoryClicked(p);
+        }
+
+        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(InventoryDataGrid.ItemsSource);
+            _Filter = SearchTextBox.Text.ToLower();
+            view.Filter = new Predicate<object>(Filters);
+        }
+
+        private bool Filters(object obj)
+        {
+            Models.Product product = obj as Models.Product;
+            if (product.Name.ToLower().Contains(_Filter) || product.Provider.Company.ToLower().Contains(_Filter))
+                return true;
+            else
+                return false;
         }
     }
 }

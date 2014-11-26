@@ -82,6 +82,7 @@
                                            Grid.Column="1"
                                            VerticalAlignment="Center"
                                            Background="Transparent"
+                                           TextChanged="SearchTextBox_OnTextChanged"
                                            BorderThickness="0"
                                            FontSize="15"
                                            Foreground="White"

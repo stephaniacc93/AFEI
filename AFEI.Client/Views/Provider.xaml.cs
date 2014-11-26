@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace AFEI.Client.Views
     {
         private ProviderModel _providerModel;
         ProviderBusiness providerBusiness = new ProviderBusiness();
+        private string _Filter;
 
         public Provider()
         {
@@ -67,6 +69,22 @@ namespace AFEI.Client.Views
         private void ExportToExcelButton_OnClick(object sender, RoutedEventArgs e)
         {
            ExportToExcel.Export(ProviderDataGrid);
+        }
+
+        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(ProviderDataGrid.ItemsSource);
+            _Filter = SearchTextBox.Text.ToLower();
+            view.Filter = new Predicate<object>(Filters);
+        }
+
+        private bool Filters(object obj)
+        {
+            Models.Provider provider = obj as Models.Provider;
+            if (provider.Company.ToLower().Contains(_Filter) || provider.LastName.ToLower().Contains(_Filter) || provider.FirstName.ToLower().Contains(_Filter))
+                return true;
+            else
+                return false;
         }
     }
 }

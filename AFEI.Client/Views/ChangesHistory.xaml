@@ -71,6 +71,7 @@
                     <xctk:WatermarkTextBox x:Name="SearchTextBox"
                                            Grid.Column="1"
                                            VerticalAlignment="Center"
+                                           TextChanged="SearchTextBox_OnTextChanged"
                                            Background="Transparent"
                                            BorderThickness="0"
                                            FontSize="15"

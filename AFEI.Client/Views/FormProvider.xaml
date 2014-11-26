@@ -29,6 +29,15 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <TextBlock x:Name="Notification" Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Margin="15,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="Segoe UI Light"
+                   FontSize="15"
+                   Foreground="DarkRed"
+                   Text="" />
         <TextBlock Grid.Row="0"
                    Grid.ColumnSpan="2"
                    Margin="15,15,0,0"
@@ -55,7 +64,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Provider.FirstName,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Center"
@@ -71,7 +83,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Provider.LastName,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="3"
                    Grid.Column="1"
                    HorizontalAlignment="Center"
@@ -79,15 +94,6 @@
                    FontFamily="Segoe UI Light"
                    FontSize="20"
                    Text="Compañia" />
-        <TextBox x:Name="TelefonoTextBox"
-                 Grid.Row="3"
-                 Grid.Column="2"
-                 Width="200"
-                 Height="40"
-                 FontFamily="Segoe UI Light"
-                 FontSize="20"
-                 Text="{Binding Provider.Phone,
-                                Mode=TwoWay}" />
         <TextBox x:Name="CompanyTextBox"
                  Grid.Row="3"
                  Grid.Column="2"
@@ -96,7 +102,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Provider.Company,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="4"
                    Grid.Column="1"
                    HorizontalAlignment="Center"
@@ -112,7 +121,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Provider.Email,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="5"
                    Grid.Column="1"
                    HorizontalAlignment="Center"
@@ -128,7 +140,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Provider.Phone,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <Button x:Name="AddProviderButton"
                 Grid.Row="7"
                 Grid.Column="1"

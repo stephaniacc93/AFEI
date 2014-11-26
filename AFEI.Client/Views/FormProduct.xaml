@@ -14,7 +14,7 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -29,6 +29,15 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <TextBlock x:Name="Notification" Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Margin="15,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="Segoe UI Light"
+                   FontSize="15"
+                   Foreground="DarkRed"
+                   Text="" />
         <TextBlock Grid.Row="0"
                    Grid.ColumnSpan="2"
                    Margin="15,15,0,0"
@@ -54,7 +63,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Product.Name,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Center"
@@ -71,7 +83,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Product.Description,
-                                Mode=TwoWay}"
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}"
                  TextWrapping="Wrap" />
 
         <TextBlock Grid.Row="3"
@@ -89,7 +104,10 @@
                  FontFamily="Segoe UI Light"
                  FontSize="20"
                  Text="{Binding Product.Quantity,
-                                Mode=TwoWay}" />
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=LostFocus,
+                                ValidatesOnDataErrors=true,
+                                NotifyOnValidationError=true}" />
         <TextBlock Grid.Row="4"
                    Grid.Column="1"
                    HorizontalAlignment="Center"

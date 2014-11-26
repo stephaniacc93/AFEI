@@ -16,7 +16,7 @@ namespace AFEI.Client.Views
 
         public FormProvider()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
         public FormProvider(object o)
         {
@@ -40,11 +40,21 @@ namespace AFEI.Client.Views
 
         private void AddProviderButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.Provider.Id != 0)
-                providerBusiness.Update(_viewModel.Provider);
+            if (string.IsNullOrWhiteSpace(_viewModel.Provider.error))
+            {
+                Notification.Text = "";
+                if (_viewModel.Provider.Id != 0)
+                    providerBusiness.Update(_viewModel.Provider);
+                else
+                    providerBusiness.Create(_viewModel.Provider);
+                OnAddProviderClicked();
+            }
+
             else
-                providerBusiness.Create(_viewModel.Provider);
-            OnAddProviderClicked();
+            {
+                Notification.Text =
+                    "El proveedor  no ha sido registrado, favor de ingresar los datos correspondientes";
+            }
         }
     }
 }

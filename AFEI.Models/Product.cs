@@ -7,12 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace AFEI.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Product
+
+    public partial class Product : IDataErrorInfo
     {
         public Product()
         {
@@ -20,15 +22,62 @@ namespace AFEI.Models
             this.Clients = new HashSet<Client>();
             this.Prices = new HashSet<Price>();
         }
-    
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
-    
+        public string error = "";
         public virtual ICollection<History> Histories { get; set; }
         public virtual Provider Provider { get; set; }
         public virtual ICollection<Client> Clients { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "Name")
+                {
+                    if (string.IsNullOrWhiteSpace(Name))
+                        result = "Favor ingresar un nombre para el producto";
+                }
+                if (columnName == "Description")
+                {
+                    if (string.IsNullOrWhiteSpace(Description))
+                        result = "Favor ingresar una descripcion para el producto";
+                }
+                if (columnName == "Quantity")
+                {
+                    if (string.IsNullOrWhiteSpace(Quantity.ToString()))
+                    {
+                        foreach (char x in Quantity.ToString().ToCharArray())
+                        {
+                            if (char.IsDigit(x))
+                                result = "Favor ingresar una cantidad apropiada";
+                        }
+                    }
+                }
+                if (columnName == "Provider")
+                {
+                    if (Provider == null)
+                    {
+                        result = "Favor ingresar un proveedor";
+                    }
+                }
+                error = result;
+                return result;
+            }
+        }
+
+        #endregion
     }
 }
