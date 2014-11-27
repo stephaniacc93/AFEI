@@ -10,7 +10,7 @@ namespace AFEI.Data.Repositories.NonGeneric
     public class ProductPersistence
     {
         ChangesLogPersistence changesLogPersistence = new ChangesLogPersistence();
-        
+
         public Product Create(Product entity)
         {
             Product response;
@@ -67,14 +67,10 @@ namespace AFEI.Data.Repositories.NonGeneric
             {
                 using (var AFEIEntities = new AFEIEntities())
                 {
-                    var stub = new Product() { Id = entity.Id };
-                    AFEIEntities.Products.Attach(stub);
-                    AFEIEntities.Products.ApplyCurrentValues(entity);
-                    stub.Quantity = entity.Quantity;
+                    AFEIEntities.Products.Attach(entity);
+                    AFEIEntities.Products.Context.ObjectStateManager.ChangeObjectState(entity, System.Data.Entity.EntityState.Modified);
                     AFEIEntities.SaveChanges();
-
-
-                    response = AFEIEntities.Products.Single(x => x.Id == entity.Id);
+                    return entity;
                 }
             }
             catch (Exception e)
