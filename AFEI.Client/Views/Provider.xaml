@@ -155,22 +155,6 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Eliminar">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="DeleteProviderButton"
-                                    Width="70"
-                                    Height="25"
-                                    HorizontalAlignment="Center"
-                                    Background="#385A5E"
-                                    BorderThickness="0"
-                                    Click="DeleteProviderButton_OnClick"
-                                    Content="Eliminar"
-                                    FontSize="12"
-                                    Foreground="#f2f2f2" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

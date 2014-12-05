@@ -46,7 +46,7 @@ namespace AFEI.Client.Views
 
         private async void AddProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_viewModel.History.error))
+            if (string.IsNullOrWhiteSpace(_viewModel.History.error) && _viewModel.History.Quantity > 0 && !string.IsNullOrWhiteSpace(_viewModel.History.Quantity.ToString()))
             {
                 _viewModel.Product.Quantity += _viewModel.History.Quantity;
                 productBusiness.Update(_viewModel.Product);

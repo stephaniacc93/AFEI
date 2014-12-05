@@ -47,7 +47,8 @@ namespace AFEI.Client.Views
 
         private void OutputProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_viewModel.History.error) && _viewModel.History.Quantity <= _viewModel.Product.Quantity)
+            if (string.IsNullOrWhiteSpace(_viewModel.History.error) && _viewModel.History.Quantity <= _viewModel.Product.Quantity  && _viewModel.History.Quantity > 0 && !string.IsNullOrWhiteSpace(_viewModel.History.Quantity.ToString()))
+           
             {
                 if (_viewModel.History.Quantity == _viewModel.Product.Quantity)
                 {

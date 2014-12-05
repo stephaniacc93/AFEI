@@ -64,7 +64,7 @@ namespace AFEI.Models
                     }
                     else
                     {
-                        if (Phone.Count() != 7 || Phone.Count() != 10)
+                        if (Phone.Count() != 7 && Phone.Count() != 10)
                         {
                             result = "Favor ingresar un telefono correcto";
                         }

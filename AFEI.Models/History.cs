@@ -31,35 +31,33 @@ namespace AFEI.Models
 
         public string Error
         {
-            get { throw new NotImplementedException(); }
+            get { return error; }
         }
 
         public string this[string columnName]
         {
             get
             {
-                string result = null;
+                error = null;
                 if (columnName == "Quantity")
                 {
-                    if (Quantity == 0 || string.IsNullOrWhiteSpace(Quantity.ToString()))
-                        result = "Favor ingresar una cantidad correcta";
+                    if (Quantity <= 0 || string.IsNullOrWhiteSpace(Quantity.ToString()))
+                        error = "Favor ingresar una cantidad correcta";
                 }
                 if (columnName == "TransactionAmount")
                 {
-                    if (TransactionAmount == 0 || string.IsNullOrWhiteSpace(TransactionAmount.ToString()))
-                        result = "Favor ingresar una cantidad correcta";
+                    if (TransactionAmount <= 0 || string.IsNullOrWhiteSpace(TransactionAmount.ToString()))
+                        error = "Favor ingresar una cantidad correcta";
                 }
 
                 if (columnName == "Justification")
                 {
                     if (string.IsNullOrWhiteSpace(Justification))
                     {
-                        result = "Favor ingresar una justificacion";
+                        error = "Favor ingresar una justificacion";
                     }
                 }
-
-                error = result;
-                return result;
+                return error;
             }
 
             #endregion
